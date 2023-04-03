@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Heiegg" />
+  <meta name="dcterms.date" content="2023-03-31" />
+  <title>Notes on Thin Film Interference</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Notes on Thin Film Interference</h1>
+<p class="author">Heiegg</p>
+<p class="date">2023-03-31</p>
+</header>
+<h1 id="sec:interference">Interference</h1>
+<p>We consider the 1-dimensional case only. Let x be the location
+coordinate (where right is the positive direction) and t be the time
+variable. Then a wave is a function of the form <span
+class="math display">\begin{aligned}
+  u(x,t) = F(x-ct) + G(x+ct)
+\end{aligned}</span> where F is a right-travelling function and <span
+class="math inline">G</span> is a left-travelling function.</p>
+<p>Next we consider reflection and transmission at the boundary of two
+media. Consider a right-travelling wave. Assume that <span
+class="math inline">u = A e^{i(kx - \omega t)}</span> where <span
+class="math inline">A\in\mathbb{C}</span>, <span class="math inline">k,
+\omega \in \mathbb{R}</span>. <span class="math inline">| A |</span> is
+the amplitude, the argument of <span class="math inline">A</span> is the
+phase, <span class="math inline">k</span> is the angular wavenumber,
+<span class="math inline">\omega</span> is the angular frequency. We
+have the relation <span class="math inline">k=\omega / v</span> where
+<span class="math inline">v</span> is the speed of the wave in medium
+<span class="math inline">1</span>. We will generally focus on the
+imaginary part.</p>
+<p>Assume the boundary of the two media is at <span
+class="math inline">x_{0}</span>. Let <span
+class="math inline">v&#39;</span> be the speed of the wave and <span
+class="math inline">k&#39;</span> the angular wavenumber in medium <span
+class="math inline">2</span>. Of course, <span
+class="math inline">k&#39; = \omega/ v&#39;</span>. Write <span
+class="math display">u(x,t) = A e^{ikx_{0}} e^{i(k(x-x_{0})  - \omega
+t)}.</span> Let <span class="math inline">u^{\mathrm{refl}}</span> be
+the reflected wave and <span
+class="math inline">u^{\mathrm{trans}}</span> the transmitted wave. It
+is worked out that <span class="math display">\begin{aligned}
+  u^{\mathrm{refl}} (x,t) &amp;= \frac{v&#39; - v}{v&#39; + v} A
+e^{ikx_{0}} e^{i ( - k(x - x_{0}) - \omega t)}  \\
+  u^{\mathrm{trans}} (x,t) &amp;= \frac{2v&#39;}{ v&#39; + v} A
+e^{ikx_{0}} e^{i (k&#39; (x-x_{0}) -\omega t)}.
+\end{aligned}</span></p>
+<p>With this setup, we can apply this to the study of interference of
+membrane (consisting of medium <span class="math inline">2</span>). The
+transmitted wave is reflected by the back surface of the membrane, which
+is then transmitted back to medium <span class="math inline">1</span>.
+This wave would interfere with the reflected wave by the front surface
+of the membrane. Of course, the wave keeps reflecting between the front
+and back surfaces. We will ignore their contribution.</p>
+<p>The main reference is from wikipedia <a href="#fn1"
+class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Next we need to compute the irradiance of the total reflected wave.
+We now specialise to electromagnetic waves which have an electric part
+<span class="math inline">E</span> and a magnetic part <span
+class="math inline">B</span>. The electric wave and the magnetic wave
+are orthogonal to each other. We have the relation <span
+class="math inline">B=E/c</span>, where <span
+class="math inline">c</span> is the speed of light in the medium. Let
+<span class="math inline">\varepsilon</span> be the permittivity of the
+medium. Let <span class="math inline">\mu</span> be the permeativity of
+the medium. We have the relation <span class="math inline">c =
+\frac{1}{\sqrt{\varepsilon\mu}}</span>.</p>
+<p>It is worked out that the energy density is <span
+class="math display">\begin{aligned}
+  \varepsilon E(x,t)^{2}.
+\end{aligned}</span> The power per unit area is <span
+class="math display">\begin{aligned}
+  c\varepsilon E(x,t)^{2}.
+\end{aligned}</span> One basically converts the length to time, knowing
+the speed of light. What is important for perception is the irradiance,
+also called the intensity. This is the average power per unit area (with
+respect to <span class="math inline">t</span>). We just need to average
+over one period of the wave. Thus the irradiance is <span
+class="math display">\begin{aligned}
+  \frac{c\varepsilon}{T} \int_{t - \frac{T}{2}} ^{t +
+\frac{T}{2}}  E^{2}(x, s) ds.
+\end{aligned}</span> Here <span class="math inline">T=2\pi/\omega</span>
+is the period.</p>
+<p>We note <span class="math inline">E</span> will be the imaginary part
+of sums of <span class="math inline">Ae^{i(kx - \omega t)}</span>’s,
+which is a sinusoidal wave. Let <span class="math inline">E(x,t) = A
+e^{i(kx - \omega t + \phi)}</span> with <span
+class="math inline">A\in\mathbb{R}_{&gt;0}</span> and <span
+class="math inline">\phi</span> the phase. The integral can be made
+explicit. We get the irradiance: <span
+class="math display">\begin{aligned}
+\frac {1} {2}c \varepsilon A^{2}.
+\end{aligned}</span> We can bring in the spectral irradiance
+distribution with respect to vaccuum wavelengths. Due to orthogonality,
+contributions to irradiance from different vaccuum wavelengths do not
+cancel and we find the total irradiance by integrating the
+contributions.</p>
+<p>The main reference is this<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<h1 id="sec:power-spectr-distr">Spectral Radiance Distribution and
+Colour</h1>
+<p>By Section <a href="#sec:interference" data-reference-type="ref"
+data-reference="sec:interference">1</a>, we can compute the spectral
+irradiance distribution of the reflected light. For light of different
+wavelengths (in vaccuum), the IOR of the medium may be different. We
+will ignore this.</p>
+<p>We can convert spectral power distribution (the viewer receives) to a
+‘colour’ with respect to the <span class="math inline">2^{\circ}</span>
+CIE standard viewer. To display the colour on a device, we need to
+further convert it to a representation in P3/Display or sRGB etc.</p>
+<p>First we have the CIE XYZ space which we denote by <span
+class="math inline">E</span>. It is a <span
+class="math inline">3</span>-dimensional real vector space. Every point
+corresponds to a sensation of colour perceived by the standard (human)
+viewer, though due to human limitations, only a subdomain <span
+class="math inline">D</span> of the XYZ space is used. The dimension
+corrresponds to the fact that humans are generally tristimulus. Mixing
+colours in this space is compatible with the additive structure of the
+vector space. The mapping of the space of spectral radiance
+distributions to the XYZ space is given by integration against the CIE’s
+color matching functions <span class="math inline">\bar{x}(\lambda),
+\bar{y}(\lambda), \bar{z}(\lambda)</span>. Note that radiance and
+irradiance are not the same. The emitted light needs to travel to the
+viewer. We need to compute how much power the viewer receives. We will
+assume a conversion rate of <span class="math inline">1</span> from
+irradiance and the power the viewer receives. Let <span
+class="math inline">p(\lambda)</span> denote the spectral power
+distribution. Let <span class="math inline">V</span> denote the segment
+of visible vaccuum wavelengths. We have <span
+class="math display">\begin{aligned}
+  X &amp;= \int_{V} p(\lambda) \bar{x}(\lambda) d\lambda, \\
+  Y &amp;= \int_{V} p(\lambda) \bar{y}(\lambda) d\lambda, \\
+  Z &amp;= \int_{V} p(\lambda) \bar{z}(\lambda) d\lambda .
+\end{aligned}</span> See reference<a href="#fn3" class="footnote-ref"
+id="fnref3" role="doc-noteref"><sup>3</sup></a>. When we get a batch of
+XYZ coordinates, we normalise them so that the largest luminance is
+<span class="math inline">1</span>.</p>
+<p>The quantity <span class="math inline">Y</span> corresponds to
+luminance.</p>
+<p>An CIE RGB colour space can be specified by fixing three points <span
+class="math inline">R,G,B</span> in the subdomain <span
+class="math inline">D</span> of the XYZ space <span
+class="math inline">E</span>. We require that <span
+class="math inline">OR</span>, <span class="math inline">OG</span> and
+<span class="math inline">OB</span> form a basis for <span
+class="math inline">E</span>. Then every point in <span
+class="math inline">E</span> can be written as a linear combination of
+<span class="math inline">OR</span>, <span class="math inline">OG</span>
+and <span class="math inline">OB</span>. Only the points with in the
+linear combination with coefficients in <span
+class="math inline">[0,1]</span> can be represented. The coefficients
+are then adjusted using a gamma curve and converted to an integer value
+between <span class="math inline">0</span> and <span
+class="math inline">255</span>. We get the hex representation of the
+colour.</p>
+<p>Set <span class="math display">\begin{aligned}
+  x &amp;= \frac{X}{X+Y+Z}\\
+  y &amp;= \frac{Y}{X+Y+Z}\\
+  z &amp;= \frac{Z}{X+Y+Z}.
+\end{aligned}</span></p>
+<p>This is the projection to the plane <span
+class="math inline">X+Y+Z=1</span> with respect to the origin. We focus
+on this affine plane and call it <span class="math inline">U</span>.
+Every point can be described by using <span
+class="math inline">(x,y)</span>. Instead of specifying <span
+class="math inline">R,G,B</span>, we fix three points <span
+class="math inline">r, g, b</span> in <span class="math inline">U</span>
+which are non-colinear and a white point <span
+class="math inline">w</span> in the interior of the triangle <span
+class="math inline">RGB</span>. They are assumed to lie in <span
+class="math inline">D</span>. Let <span class="math inline">W</span> be
+the point in the XYZ space, such that <span
+class="math inline">OW</span> is parallel to <span
+class="math inline">Ow</span> and <span
+class="math inline">Y_{W}=1</span>. We can determine <span
+class="math inline">R,G,B</span> that lifts <span
+class="math inline">r,g,b</span> such that <span
+class="math display">OW=OR+OG+OB.
+  \label{eq:WRGB}</span></p>
+<p>Let <span class="math display">\begin{aligned}
+  c = \begin{pmatrix}
+        x_{c}\\ y_{c}\\z_{c}
+      \end{pmatrix}, \quad \text{for $c=r,g,b$.}
+\end{aligned}</span></p>
+<p>Let <span class="math display">\begin{aligned}
+  R = \alpha_{r} r, G=\alpha_{g} g, B=\alpha_{b} b
+\end{aligned}</span> for <span
+class="math inline">\alpha_{c}\in\mathbb{R}_{&gt;0}</span>. Let <span
+class="math display">\begin{aligned}
+  M = \begin{pmatrix}
+        r &amp;g&amp;b
+      \end{pmatrix}.
+\end{aligned}</span> Then <a href="#eq:WRGB" data-reference-type="eqref"
+data-reference="eq:WRGB">[eq:WRGB]</a> becomes <span
+class="math display">\begin{aligned}
+  W = M \begin{pmatrix}
+          \alpha_{r}  &amp;  &amp;  \\
+                      &amp; \alpha_{g} &amp;  \\
+                      &amp;  &amp; \alpha_{b}
+        \end{pmatrix}
+  \begin{pmatrix}
+    1\\1\\1
+  \end{pmatrix}.
+\end{aligned}</span> Then clearly <span
+class="math display">\begin{pmatrix}
+    \alpha_{r} \\ \alpha_{g} \\\alpha_{b}
+  \end{pmatrix} = M^{-1}W.</span> This is the called wscale in the
+Python code.</p>
+<p>Let <span class="math display">\widetilde{M} = \begin{pmatrix}
+              R &amp; G &amp; B
+            \end{pmatrix}.</span> Then the RGB component of a point
+<span class="math inline">v\in E</span> is given by <span
+class="math display">\begin{aligned}
+  \widetilde{M}^{-1} v.
+\end{aligned}</span> Denote the coefficients of <span
+class="math inline">v</span> with respect to the basis <span
+class="math inline">R,G,B</span> by <span class="math inline">v^{0}_{R},
+v^{0}_{G},v^{0}_{B}</span>. Ref<a href="#fn4" class="footnote-ref"
+id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>We can look up the <span class="math inline">r,g,b,w</span> values
+from here<a href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a> and here<a href="#fn6"
+class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> for
+example.</p>
+<p>Next we need to apply the gamma correction. For P3-Display and sRGB
+this is given by <span class="math display">C =\begin{cases}
+       12.92C_{\text{linear}},&amp;C_{\text{linear}}\leq 0.0031308\\
+       1.055C_{\text{linear}}^{1/2.4}-0.055,&amp;C_{\text{linear}}&gt;0.0031308.
+     \end{cases}</span> We write <span
+class="math inline">C_{\text{linear}}</span> for <span
+class="math inline">v^{0}_{R}, v^{0}_{G},v^{0}_{B}</span> above. Now we
+have the gamma corrected values and call them <span
+class="math inline">v_{R}, v_{G},v_{B}</span>. When we get negative
+values we may apply desaturation to land in the non-negative range. Then
+we may get values exceeding <span class="math inline">1</span>, I do not
+know the correct treatment for overexposure. My current treatment is to
+scale down by dividing out the largest value. Finally we convert them
+linearly to integer values between <span class="math inline">0</span>
+and <span class="math inline">255</span>. We get the hex representation
+of the colour.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://en.wikipedia.org/wiki/Wave_equation"
+class="uri">https://en.wikipedia.org/wiki/Wave_equation</a><a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a
+href="https://www.brown.edu/research/labs/mittleman/sites/brown.edu.research.labs.mittleman/files/uploads/lecture04.pdf"
+class="uri">https://www.brown.edu/research/labs/mittleman/sites/brown.edu.research.labs.mittleman/files/uploads/lecture04.pdf</a><a
+href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a
+href="https://en.wikipedia.org/wiki/CIE_1931_color_space"
+class="uri">https://en.wikipedia.org/wiki/CIE_1931_color_space</a><a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a
+href="http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html"
+class="uri">http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html</a><a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://en.wikipedia.org/wiki/DCI-P3"
+class="uri">https://en.wikipedia.org/wiki/DCI-P3</a><a href="#fnref5"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://en.wikipedia.org/wiki/SRGB"
+class="uri">https://en.wikipedia.org/wiki/SRGB</a><a href="#fnref6"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
