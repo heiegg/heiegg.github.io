@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Heiegg" />
+  <meta name="dcterms.date" content="2020-07-30" />
+  <title>Notes on colour theory</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <script defer="" src="katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet" href="katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Notes on colour theory</h1>
+<p class="author">Heiegg</p>
+<p class="date">2020-07-30</p>
+</header>
+<p>The main reference is <span class="citation"
+data-cites="briggs-dim-colour">(Briggs, n.d.)</span><a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and
+articles on light on Wikipedia.</p>
+<h1 id="sec:ausp-beginn-notes">Auspicious beginning of notes on colour
+theory</h1>
+<p>What is colour?</p>
+<p>It is a sensation arising from light hitting you.</p>
+<p>What is light?</p>
+<p>Lol, as if we knew. Here’s an attempt. It is electromagnetic wave and
+also a bunch of photon particles.</p>
+<h1 id="sec:spec-best-our">Speculations based on shaky foundation to the
+best of our knowledge</h1>
+<p>As electromagnetic wave, light has properties such as frequencies
+<span class="math inline">f</span> and wavelengths <span
+class="math inline">\lambda</span>. By property of wave, <span
+class="math inline">f\lambda = c</span> where <span
+class="math inline">c</span> is the speed of light in the medium.
+Different wavelengths cause the cones in human eyes to produce varying
+responses. (The cones are in a fixed medium. It is not clear to us if
+the wavelengths of light in various charts in the references are tied to
+this particular medium or not.) Each parcel of light carries energy. The
+energy of a photon with frequency <span class="math inline">f</span> is
+equal to <span class="math inline">hf</span> where <span
+class="math inline">h</span> is the Planck constant.</p>
+<p>Now consider the scenario of looking at an object. Light has bounced
+around or got absorbed and re-emitted etc and finally reaches your eye.
+Specular reflection generally does not change the frequency distribution
+of light, while diffuse reflection causes changes <span class="citation"
+data-cites="briggs-dim-colour">(Briggs, n.d., sec. 2.1)</span>. We
+suppose one can always design devious material to make this false.</p>
+<p>Assume you are a generic human. Then you are tri-chromatic with cones
+of types L, M and S. For given light, let <span class="math inline">n
+(f)</span> be the number of photons as a function of given frequency
+<span class="math inline">f</span>. Since energy carried by the photons
+of given frequency is proportional to their number, <span
+class="math inline">n</span> is similar to spectral power distribution
+of the light and we will call it spectral distribution of the given
+light. For each frequency, each type of cones produce a response of a
+certain strength. The more photons, the stronger the response. Let the
+response function be <span class="math inline">r_i (f,n)</span> where
+<span class="math inline">f</span> is the frequency and <span
+class="math inline">n</span> the number of photons with frequency <span
+class="math inline">f</span> hitting one cone of type <span
+class="math inline">i</span> per unit time. Here <span
+class="math inline">i</span> is L or M or S. It seems that <span
+class="math inline">r_i</span> is largely linear with respect to <span
+class="math inline">n</span> at least when <span
+class="math inline">n</span> is not too small or too big. There is
+always some threshold you need to go beyond to get any response and when
+you are hit by too much energy, you die in general. Then we get the
+total response <span class="math inline">R_i</span> to the given light
+for each type of cone by integrating over all frequencies. This is
+actually a finite sum as we have only finitely many photons hitting you
+per unit time. Note that <span class="math inline">n</span> is a
+function of <span class="math inline">f</span> when the light is given.
+With <span class="math inline">R_i</span>’s produced, they are
+transformed by opponent cells into three other outputs, one being
+achromatic which is just <span class="math inline">R_\mathrm
+{L}+R_\mathrm {M}+R_\mathrm {S}</span>, the other two being chromatic
+opponencies, which are given by <span class="math inline">R_\mathrm
+{L}-R_\mathrm {M}</span> and <span class="math inline">R_\mathrm {S}-
+(R_\mathrm {L}+ R_\mathrm {M})</span>. This is a bijective function. The
+exact functions may be off, but the next sentence holds regardless. The
+former one measures brightness; the latter two quantities give a
+quantitative measure of how biased the spectral distribution is. It
+should be pointed out that a lot of information is lost in this process.
+Many different frequency distributions give rise to the same responses
+and they are called metamers and are indistinguishable to your visual
+system. Let us call the set of frequency distributions that are
+metameric to each other a metameric packet.</p>
+<p>A naive generalisation to <span
+class="math inline">k</span>-chromatic creatures is as follows. First
+they get <span class="math inline">R_i</span> for <span
+class="math inline">i=1,\ldots,k</span> and then these are transformed
+into brightness and <span class="math inline">k-1</span> opponencies,
+which quantify hue and colourfulness. Thus the total sensation/colour
+space is a domain in a Euclidean space of dimension <span
+class="math inline">k</span>. This domain should be compact and
+convex.</p>
+<p>Due to the brain’s precognitive process (lightness constancy) of
+compensating for differences in illumination, it is natural to normalise
+brightness and colourfulness to account for illumination condition. One
+way to quantify the illumination condition is to use the brightness of a
+reference object, which should reflect a balanced distribution of
+frequencies. Thus we define lightness (resp. chroma) as brightness
+(resp. colourfulness) to brightness of the reference object under the
+same illumination condition. As lightness and chroma are mostly
+independent of illumination condition (within a reasonable range), they
+are perceived as intrinsic to the object. There are other constancies at
+play, such as colour constancy which makes us to perceive different
+colours at points when our cones produce the same responses. This gives
+rise to the two different notions of colour, perceived colour and
+psychophysical colour.</p>
+<p>We now try to describe more precisely the normalised sensation/colour
+space. When we hold lightness constant, the section of the normalised
+sensation/colour space is of dimension <span
+class="math inline">k-1</span>. We may perceive this to be a compact
+convex <span class="math inline">(k-1)</span>-dimensional domain that is
+diffeomorphic to a <span class="math inline">(k-1)</span>-ball. On the
+boundary of the domain, we sense the most bias in spectral distribution
+and recognise the points on the boundary as the most intense colours.
+The boundary of the domian is labelled by hues. Toward the centre, we
+sense a balanced spectral distribution and recognise it as neutral like
+white, grey and black. The distance to the centre is called chroma.</p>
+<p>There is a related concept called saturation. It is defined to be
+colourfulness of object to the brightness of the object. Note that
+chroma is colourfulness of object to the brightness of the reference
+object and that lightness is the brightness of the object to the
+brightness of the reference object. Thus we see that saturation is
+chroma to lightness. Thus each circular cone (consisting lines of a
+given slope in each 2D slice passing through the lightness axis) in the
+normalised sensation/colour space has the same saturation. As the cones
+open wider, saturation increases.</p>
+<h1 id="sec:application">Application</h1>
+<p>Thus painting is trying to reproduce light to cause the same
+responses of the cones as caused by reflected light of an object. Note
+that the responses are those before processed by the precognitive
+lightnesscolour constancy process. Hence picking the right metameric
+packet is difficult. Mixing paints is also difficult due to our visual
+system. One has only an estimation of spectral properties of paints when
+attempting to mix the right metameric packet.</p>
+<p>For digital painting, the canvas is the screen which emits light. Its
+brightness should be calibrated to match that of the environment so that
+our visual system estimates the correct illumination condition in which
+to place the digital painting. Painting digitally still is trying to
+reproduce light to cause the same responses of the cones as caused by
+reflected light of an object.</p>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="list">
+<div id="ref-briggs-dim-colour" class="csl-entry" role="listitem">
+Briggs, David. n.d. <span>“The Dimensions of Colour.”</span>
+</div>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="http://www.huevaluechroma.com"
+class="uri">http://www.huevaluechroma.com</a><a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</body>
+</html>
