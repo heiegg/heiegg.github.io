@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Heiegg" />
+  <meta name="dcterms.date" content="2021-04-06" />
+  <title>Obnoxious notes to perspective drawing</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer="" src="katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet" href="katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Obnoxious notes to perspective drawing</h1>
+<p class="author">Heiegg</p>
+<p class="date">2021-04-06</p>
+</header>
+<p>These are our notes to studying perspective without the crutch of
+cubes. Oh, well, as we added some notes on how to apply this to drawing,
+there are cubes now. We think this definitely helped with our drawing
+skills. Please let us know any inaccuracies.</p>
+<h1 id="sec:persp-proj-map">The Perspective Projection Map</h1>
+<p>We consider the <span class="math inline">3</span>-dimensional
+Euclidean space <span class="math inline">\mathbb {R}^3</span>. Let
+<span class="math inline">V</span> be the viewing plane and <span
+class="math inline">O</span> be the eye point. Then the perspective
+drawing is, in essence, the projection to <span
+class="math inline">V</span> with respect to <span
+class="math inline">O</span>. More precisely, the image of a point <span
+class="math inline">P</span> in space is the point of intersection of
+the line <span class="math inline">OP</span> and the plane <span
+class="math inline">V</span>. Let <span class="math inline">f</span>
+denote this map.</p>
+<p>[TODO: figure of map]</p>
+<p>Without loss of generality, we set <span class="math inline">O</span>
+to be the origin and <span class="math inline">V</span> to be the plane
+<span class="math inline">z=1</span>. Then the map <span
+class="math inline">f</span> is given by: <span
+class="math display">\begin{aligned}
+  f: \mathbb {R}^3\backslash \{z=0\} &amp;\rightarrow V \\
+  (x,y,z) &amp;\mapsto (x/z,y/z,1).
+\end{aligned}</span> We may identify the affine space <span
+class="math inline">V</span> with <span class="math inline">\mathbb
+{R}^2</span> by taking the vector part, more precisely, by dropping the
+<span class="math inline">z</span>-coordinate. In application, we
+restrict <span class="math inline">f</span> to the domain <span
+class="math inline">z&gt;0</span>.</p>
+<p>Let <span class="math inline">W</span> be a plane. As long as <span
+class="math inline">W</span> does not pass <span
+class="math inline">O</span>, then <span class="math inline">f|_W</span>
+is a bijection.</p>
+<p>Let <span class="math inline">C</span> be intersection of the locus
+of a degree <span class="math inline">n</span> polynomial <span
+class="math inline">p</span> with the plane <span
+class="math inline">W</span>, i.e., the points on <span
+class="math inline">C</span> satisfies <span
+class="math inline">p</span> in addition to a degree <span
+class="math inline">1</span> polynomial. In this case, it is easy to see
+that points on the image of <span class="math inline">C</span> also
+satisfies a degree <span class="math inline">n</span> polynomial.</p>
+<p>In particular, <span class="math inline">f</span> maps lines to lines
+and conics to conics. Signature is not preserved however. Thus it is
+possible for the types of conics to change. In application, the image of
+an ellipse must be an ellipse; otherwise, the source ellipse intersects
+the <span class="math inline">xy</span>-plane. This can be seen by going
+back to the original meaning of conics: curves cut from cones by
+planes.</p>
+<h1 id="sec:vanishing-point">The Vanishing Point</h1>
+<p>Let <span class="math inline">\mathbf {v}</span> be a vector. Let
+<span class="math inline">\ell</span> be a line passing through a point
+<span class="math inline">P</span> and parallel to <span
+class="math inline">\mathbf {v}</span>. Then points on <span
+class="math inline">\ell</span> can be parametrised as <span
+class="math display">P + t\mathbf {v},\qquad t\in\mathbb {R}.</span> Let
+the coordinates of <span class="math inline">P</span> be given by <span
+class="math inline">(x_P,y_P,z_P)</span> and <span
+class="math inline">\mathbf {v}</span> given by <span
+class="math inline">(v_1,v_2,v_3)</span>. Then if <span
+class="math inline">v_3\neq 0</span>, i.e., <span
+class="math inline">\mathbf {v}</span> is not parallel to <span
+class="math inline">V</span>, then <span
+class="math display">\lim_{t\rightarrow \infty} f (P + t\mathbf {v})
+  = \lim_{t\rightarrow \infty}
+(\frac{x_P+tv_1}{z_P+tv_3},\frac{y_P+tv_2}{z_P+tv_3},1)
+  = (\frac{v_1}{v_3},\frac{v_2}{v_3},1).</span> This point is called the
+vanishing point of <span class="math inline">\ell</span>. If <span
+class="math inline">v_3=0</span>, we should consider infinity to be the
+vanishing point. The meaning of infinity and which infinity point can be
+made precise by using projective geometry. Let <span
+class="math inline">\mathcal {C}_\mathbf {v}</span> be the collection of
+lines parallel to <span class="math inline">\mathbf {v}</span>. In fact,
+the vanishing point depends only on <span class="math inline">\mathbf
+{v}</span>, not on the choice of <span class="math inline">\ell</span>
+in <span class="math inline">\mathcal {C}_\mathbf {v}</span>. Let <span
+class="math inline">\mathcal {C}_\mathbf {v}</span> be the collection of
+lines parallel to <span class="math inline">\mathbf {v}</span>. Thus
+every line in <span class="math inline">\mathcal {C}_\mathbf {v}</span>
+has the same vanishing point. Thus their images appear to radiate from
+one point. Note that if we restrict to the <span
+class="math inline">z&gt;0</span> part, the image is a ray.</p>
+<p>[TODO: figure of VP for parallel lines.]</p>
+<p>Let <span class="math inline">\ell_O</span> be the line which is
+parallel to <span class="math inline">v</span> and which contains <span
+class="math inline">O</span>. Geometrically the vanishing point for
+<span class="math inline">\mathcal {C}_\mathbf {v}</span> is just the
+point of intersection of <span class="math inline">\ell_O</span> and
+<span class="math inline">V</span>.</p>
+<p>Thus we can answer the question of how many vanishing points there
+are in a drawing. The answer is the number of lines with different
+direction vectors. In scenes like cityscape, there are generally three
+sets of parallel lines with different direction vectors. Each produces a
+vanishing point as long as the set of lines are not parallel to <span
+class="math inline">V</span>. We get the so-called 3-point, 2-point and
+1-point perspectives.</p>
+<p>Let <span class="math inline">W</span> be a plane. The set of
+vanishing points of lines contained in <span
+class="math inline">W</span> form a line. Geometrically it is given by
+intersecting the plane passing through <span
+class="math inline">O</span> and parallel to <span
+class="math inline">W</span> with <span class="math inline">V</span>.
+Let us call it the vanishing line of <span class="math inline">W</span>.
+In application, when <span class="math inline">W</span> is taken to be
+the ground plane, the vanishing line of <span
+class="math inline">W</span> is usually called the horizon or eye
+level.</p>
+<p>[TODO: figure of VL for parallel planes.]</p>
+<p>In practice, image of lines are easy to determine once we put down
+the vanishing points. If we know a point to be the intersections of two
+lines, we may find its image by finding the intersection of the images
+of the two lines. As line segments of the same length do not map to line
+segments of the same length under the perspective projection, this
+provides an easy way to determine location of image of a point. We can
+find the image of the centre of a rectangle by intersecting the
+diagonals of the image of the rectangle, for example. Once we know the
+image of the centre, we can find image of the disecting points and hence
+we know how to find the image of the rectangle that extends the original
+rectangle by one time of its width.</p>
+<h1 id="sec:transfer-distance">Measuring Distance</h1>
+<p>The aim of this section is to study images of line segments of equal
+length. In application, essentially we operate on <span
+class="math inline">V</span> only. One problem arises often. We have the
+image of a line segment as reference. How do we find the image of the
+same length along another line?</p>
+<p>What we have available are the vanishing points and the reference
+line segment on <span class="math inline">V</span>. Once we supply the
+information of the relative position of <span
+class="math inline">O</span> to the lines, then we can transfer the
+distance from one line to another.</p>
+<p>Let <span class="math inline">\ell</span> be a line. Let <span
+class="math inline">P</span> and <span class="math inline">Q</span> be
+two points on <span class="math inline">\ell</span>. Let <span
+class="math inline">\ell&#39;</span> be another line that passes through
+<span class="math inline">P</span>. Let <span
+class="math inline">R</span> be a point on <span
+class="math inline">\ell&#39;</span> such that <span
+class="math inline">|PQ|=|PR|</span>. Let <span
+class="math inline">A</span> be the vanishing point of <span
+class="math inline">\ell</span> and <span class="math inline">B</span>
+that of <span class="math inline">\ell&#39;</span>. We would like to
+find <span class="math inline">f (R)</span> in terms of <span
+class="math inline">f (P)</span>, <span class="math inline">f
+(Q)</span>, <span class="math inline">A</span> and <span
+class="math inline">B</span>.</p>
+<p>One observation is that if we know the vanishing point <span
+class="math inline">C</span> of <span class="math inline">QR</span> then
+<span class="math inline">f (R)</span> can be found as the intersection
+of the line connecting <span class="math inline">CQ</span> and the line
+connecting <span class="math inline">BP</span>. However the location of
+<span class="math inline">C</span> cannot be determined by <span
+class="math inline">f (P)</span>, <span class="math inline">f
+(Q)</span>, <span class="math inline">A</span> and <span
+class="math inline">B</span> alone. We need an additional piece of data,
+the location of <span class="math inline">O</span> relative to <span
+class="math inline">\ell</span> and <span
+class="math inline">\ell&#39;</span>. We focus on the plane <span
+class="math inline">W</span> through <span class="math inline">O</span>
+and parallel to both <span class="math inline">\ell</span> and <span
+class="math inline">\ell&#39;</span>. We translate <span
+class="math inline">\ell</span> and <span
+class="math inline">\ell&#39;</span> to <span
+class="math inline">W</span> along a vector that is parallel to <span
+class="math inline">V</span> and orthogonal to <span
+class="math inline">AB</span>. We use superscript <span
+class="math inline">t</span> to denote the translated object. On <span
+class="math inline">(\ell&#39;)^t</span> find the point <span
+class="math inline">S</span> such that <span
+class="math inline">|P^tS|=|P^tQ^t|</span>. Note that <span
+class="math inline">QR</span> is parallel to <span
+class="math inline">Q^tS</span>. Then <span class="math inline">C</span>
+is the intersection of <span class="math inline">AB</span> and <span
+class="math inline">Q^tS</span>.</p>
+<p>[TODO: figure view of <span class="math inline">V</span>.]</p>
+<p>[TODO: figure view of <span class="math inline">W</span> to get <span
+class="math inline">C</span>]</p>
+<p>In practice, <span class="math inline">\ell</span> and <span
+class="math inline">\ell&#39;</span> are orthogonal, forming two edges
+of a cube.</p>
+<h1 id="sec:application-drawing">Application to Drawing</h1>
+<h2 id="sec:centre-rect-extens">Centre of rectangle and extension of
+length</h2>
+<p>This is already mentioned above.</p>
+<h2 id="sec:shadow">Shadow</h2>
+<p>This is an application of the intersection method. One common need is
+to find the cast shadow of a stick that stands vertically on the ground
+under sunlight. Sunlight can be considered as parallel light with given
+direction <span class="math inline">\mathbf {v}</span>. The location of
+shadow of the foot <span class="math inline">F</span> of the stick is
+obvious. Let <span class="math inline">P</span> be the top of the stick.
+The location of shadow <span class="math inline">Q</span> of top of
+stick lies on the line parallel to <span class="math inline">\mathbf
+{v}</span> through <span class="math inline">P</span>. It also lies on
+the ground plane <span class="math inline">G</span>. Thus it lies on the
+line <span class="math inline">L</span> that is the intersection of the
+plane parallel to the vertical direction and <span
+class="math inline">\mathbf {v}</span> through <span
+class="math inline">P</span> and the plane <span
+class="math inline">G</span>. Also consider the line <span
+class="math inline">M</span> through the shadow point <span
+class="math inline">Q</span> on the ground <span
+class="math inline">G</span> perpendicular to <span
+class="math inline">V</span>. If we consider the component <span
+class="math inline">\mathbf {w}</span> of light that is parallel to
+<span class="math inline">V</span>, then the line through <span
+class="math inline">P</span> along <span class="math inline">\mathbf
+{w}</span> intersects <span class="math inline">M</span> and call the
+intersection <span class="math inline">R</span>. Thus we get two lines
+whose intersection gives the shadow point <span
+class="math inline">Q</span>.</p>
+<p>To find the image of <span class="math inline">Q</span> on <span
+class="math inline">V</span>, we consider the two families of parallel
+lines determined by <span class="math inline">L</span> and <span
+class="math inline">M</span> respectively. The family of parallel lines
+associated to <span class="math inline">L</span> produces a vanishing
+point, which we call the ground vanishing point of light (GVPL). Thus
+<span class="math inline">f (Q)</span> lies on the line connecting <span
+class="math inline">f (F)</span> and GVPL. The point <span
+class="math inline">f (R)</span> is easy to find, if we know <span
+class="math inline">f (F)</span> and the horizon line and the <span
+class="math inline">V</span>-component <span class="math inline">\mathbf
+{w}</span> of <span class="math inline">\mathbf {v}</span>. Let <span
+class="math inline">C</span> be the vanishing point for the receding
+lines that are parallel to the normal of <span
+class="math inline">V</span>. Then <span class="math inline">f
+(Q)</span> also lies on the line connecting <span
+class="math inline">C</span> and <span class="math inline">f (R)</span>.
+Then using the intersection of the two lines we find <span
+class="math inline">f (Q)</span>.</p>
+<p>Summary: Shadow of top=(GLVP–foot) <span
+class="math inline">\cap</span> (centre–horizontal shadow drop).</p>
+<p>This can be generalised to finding cast shadow of any point to any
+plane which may not be orthogonal to the viewing plane. In this case
+direction of light can be encoded in vanishing point of shadow on the
+plane and vanishing point of component of light on the plane which is
+orthogonal to the given plane and which is parallel to the line of
+intersection of the given plane and the viewing plane. We should give
+this plane a name to avoid long-winded sentences.</p>
+<h1 id="sec:projective-geometry">Projective Geometry</h1>
+<p>It is cumbersome to always have to differentiate between the cases
+when family of parallel lines has image lines that radiate from one
+point or lines that remain parallel. It is best to add points at
+‘infinity’. How many points of infinities are there? In <span
+class="math inline">\mathbb {R}^2</span> the families of parallel lines
+are indexed by direction vectors. Thus we should glue on <span
+class="math inline">\mathbb {P}^1:= (\mathbb {R}^2 - \{0\})/\mathbb
+{R}^\times</span> of them. This gives us the projective space <span
+class="math inline">\mathbb {P}^2</span>, in which <span
+class="math inline">\mathbb {R}^2</span> is embedded as follows: <span
+class="math display">\begin{aligned}
+  \mathbb {R}^2 &amp;\rightarrow \mathbb {P}^2 \\
+  (x,y) &amp;\mapsto (x:y:1)
+\end{aligned}</span> while points at infinity embed as follows: <span
+class="math display">\begin{aligned}
+  \mathbb {P}^1 &amp;\rightarrow \mathbb {P}^2\\
+  (a:b) &amp;\mapsto (a:b:0).
+\end{aligned}</span> Once we call the point <span
+class="math inline">(a:b:0)</span> the vanishing point of family of
+parallel line along the vector <span class="math inline">(a,b,0)</span>,
+then we can write the theory in a more uniform way.</p>
+<h1 id="sec:intersection-method">Intersection Method</h1>
+<p>One can use two VLs to determine VP of the intersection line and one
+can also use VPs of two lines to determine VL of the plane parallel to
+both lines.</p>
+</body>
+</html>
