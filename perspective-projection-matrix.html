@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Heiegg" />
+  <title>The Perspective Projection Matrix</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script defer="" src="katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <link rel="stylesheet" href="katex.min.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">The Perspective Projection Matrix</h1>
+<p class="author">Heiegg</p>
+</header>
+<p>Let the camera be placed at the origin. Let its front direction be
+the <span class="math inline">z</span>-axis, its upward direction be the
+<span class="math inline">y</span>-axis and its right direction be the
+<span class="math inline">x</span>-axis. This is a left-handed system.
+We work in homogeneous coordinates. Thus a point <span
+class="math inline">(x,y,z)\in\mathbb{R}^{3}</span> becomes <span
+class="math inline">(x:y:z:1)\in\mathbb{P}^{3}</span> in the homogeneous
+coordinates.</p>
+<p>Let the near plane be <span class="math inline">z=z_{0}</span> and
+the far plane be <span class="math inline">z=z_{1}</span>. We assume
+that <span class="math inline">0&lt;z_{0}&lt;z_{1}</span>. We consider
+the perspective projection to the near plane: <span
+class="math display">\begin{aligned}
+  (x,y,z) \mapsto (\frac{xz_{0}}{z}, \frac{yz_{0}}{z}, z_{0})
+\quad\text{for $z\neq 0$}
+\end{aligned}</span> or in homogeneous coordinates <span
+class="math display">\begin{aligned}
+  (x:y:z:w) \mapsto (\frac{xz_{0}}{z}: \frac{yz_{0}}{z}: z_{0} :1) =
+(z_{0}x: z_{0}y: z_{0}z: z)
+\end{aligned}</span> which then becomes a linear map. The disadvantage
+is that we lose the depth information. Thus we make the following
+adjustment in the <span class="math inline">z</span>-coordinate <span
+class="math display">\begin{aligned}
+  (x:y:z:w) \mapsto (\frac{xz_{0}}{z}: \frac{yz_{0}}{z}: z_{0}-
+\frac{w}{z} :1) = (z_{0}x: z_{0}y: z_{0}z - w: z).
+\end{aligned}</span> This is still a linear map and the matrix is given
+by <span class="math display">\begin{aligned}
+P:=  \begin{pmatrix}
+z_{0}  &amp; 0 &amp; 0 &amp; 0 \\
+0      &amp; z_{0} &amp; 0 &amp; 0 \\
+0      &amp; 0 &amp; z_{0} &amp; -1 \\
+0      &amp; 0 &amp; 1 &amp; 0
+  \end{pmatrix}.
+\end{aligned}</span> Note that points with coordinates <span
+class="math inline">(x,y,z)</span> for <span
+class="math inline">z\in[z_{0},z_{1}]</span> are mapped to <span
+class="math inline">\mathbb{R}\times \mathbb{R}\times [z_{0}-
+\frac{1}{z_{0}}, z_{0} - \frac{1}{z_{1}}]</span>. We note that <span
+class="math inline">z_{0}- \frac{1}{z_{0}} &lt; z_{0} -
+\frac{1}{z_{1}}</span>.</p>
+<p>Next we find a linear map that transforms <span
+class="math inline">[x_{0},x_{1}]\times [y_{0},y_{1}] \times [z_{0}-
+\frac{1}{z_{0}}, z_{0} - \frac{1}{z_{1}}]</span> to <span
+class="math inline">[-1,1]\times[-1,1]\times[-1,1]</span>. We want to
+preserve the orientation of each pair of corresponding line segments. It
+is easy to see that we should take <span
+class="math display">\begin{aligned}
+&amp;\rightarrow [-1,1] \\
+  x &amp;\mapsto \frac{2x - x_{0} - x_{1}}{x_{1} - x_{0}}
+\end{aligned}</span> and similarly for other coordinates. Thus in the
+homogeneous coordinates, the linear map is <span
+class="math display">\begin{aligned}
+  (x:y:z:w) \mapsto &amp;(\frac{2x - (x_{0} + x_{1})w}{(x_{1} -
+x_{0})w}  :  \frac{2y - (y_{0} + y_{1})w}{(y_{1} - y_{0})w} :
+  \frac{ 2z_{0}z_{1}z - (2z_{0}^{2}z_{1}-z_{0} - z_{1})w}{(z_{1} -
+z_{0})w} : 1) \\
+  &amp;= (\frac{2x - (x_{0} + x_{1})w}{(x_{1} - x_{0})}  :  \frac{2y -
+(y_{0} + y_{1})w}{(y_{1} - y_{0})} :
+  \frac{ 2z_{0}z_{1}z - (2z_{0}^{2}z_{1}-z_{0} - z_{1})w}{(z_{1} -
+z_{0})} : w)
+\end{aligned}</span> and the matrix is <span
+class="math display">\begin{aligned}
+  Q:=
+  \begin{pmatrix}
+\frac{2}{x_{1}-x_{0}}  &amp; 0 &amp; 0 &amp; -
+\frac{x_{0}+x_{1}}{x_{1}-x_{0}} \\
+0                      &amp; \frac{2}{y_{1}-y_{0}} &amp; 0 &amp; -
+\frac{y_{0}+y_{1}}{y_{1}-y_{0}} \\
+0                      &amp; 0 &amp; \frac{2z_{0}z_{1}}{z_{1}-z_{0}}
+&amp; -\frac{2z_{0}^{2}z_{1}-z_{0} - z_{1}}{z_{1} - z_{0}} \\
+0                      &amp; 0 &amp; 0 &amp; 1
+  \end{pmatrix}.
+\end{aligned}</span></p>
+<p>Consider the frustum bounded by the near plane <span
+class="math inline">z=z_{0}</span>, the far plane <span
+class="math inline">z=z_{1}</span> and the polygonal cone consisting of
+rays from the origin through points in <span
+class="math inline">[x_{0},x_{1}]\times [y_{0},y_{1}] \times
+\{z_{0}\}</span>. Its image under the linear transformation given by
+<span class="math inline">QP</span> is then <span
+class="math inline">[-1,1]\times[-1,1]\times[-1,1]</span>. We have <span
+class="math display">\begin{aligned}
+  QP =  \begin{pmatrix}
+\frac{2z_{0}}{x_{1}-x_{0}}  &amp; 0 &amp; -
+\frac{x_{0}+x_{1}}{x_{1}-x_{0}} &amp; 0   \\[.5em]
+          0                           &amp; \frac{2z_{0}}{y_{1}-y_{0}}
+&amp; - \frac{y_{0}+y_{1}}{y_{1}-y_{0}} &amp; 0   \\[.5em]
+          0                          &amp; 0
+&amp;  \frac{z_{0}+z_{1}}{z_{1}-z_{0}} &amp; -\frac{2z_{0}z_{1}}{z_{1} -
+z_{0}}   \\[.5em]
+          0                          &amp; 0 &amp; 1 &amp; 0
+  \end{pmatrix}.
+\end{aligned}</span> This is the projection matrix. This matrix is
+defined up to scalar multiplication.</p>
+<p>For OpenGL, the <span class="math inline">z</span>-axis is in the
+opposite direction to our setup. Let the <span
+class="math inline">z&#39;</span>-axis be the opposite direction to our
+<span class="math inline">z</span>-axis. Let <span
+class="math inline">z&#39;=-z_{0}&#39;</span> be the near plane and
+<span class="math inline">z=-z_{1}&#39;</span> be the far plane with
+<span class="math inline">0 &lt; z_{0}&#39; &lt; z_{1}&#39;</span>. Thus
+the projection matrix from the view space to the NDC (normalised device
+coordinates) in OpenGL is given by <span
+class="math display">\begin{aligned}
+  QP \begin{pmatrix}
+1  &amp; 0 &amp; 0 &amp; 0 \\
+0  &amp; 1 &amp; 0 &amp; 0 \\
+0  &amp; 0 &amp; -1 &amp; 0 \\
+0  &amp; 0 &amp; 0 &amp; 1
+     \end{pmatrix}
+\end{aligned}</span> where <span class="math inline">z_{0}
+=  z_{0}&#39;</span> and <span class="math inline">z_{1} =
+z_{1}&#39;</span>, namely <span class="math display">\begin{aligned}
+   \begin{pmatrix}
+\frac{2z_{0}}{x_{1}-x_{0}}  &amp; 0 &amp;
+\frac{x_{0}+x_{1}}{x_{1}-x_{0}} &amp; 0   \\[.5em]
+0                             &amp; \frac{2z_{0}}{y_{1}-y_{0}} &amp;
+\frac{y_{0}+y_{1}}{y_{1}-y_{0}} &amp; 0   \\[.5em]
+0                             &amp; 0 &amp;
+-\frac{z_{0}+z_{1}}{z_{1}-z_{0}} &amp; -\frac{2z_{0}z_{1}}{z_{1} -
+z_{0}}   \\[.5em]
+0                             &amp; 0 &amp; -1 &amp; 0  
+  \end{pmatrix}.
+\end{aligned}</span> This is the projection matrix in the OpenGL
+setting.</p>
+</body>
+</html>
