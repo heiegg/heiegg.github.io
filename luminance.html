@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Heiegg" />
+  <meta name="dcterms.date" content="2024-04-05" />
+  <title>WTH?? Illuminance and Luminance</title>
+  <style>
+     html {
+         color: #1a1a1a;
+         background-color: #fdfdfd;
+     }
+     body {
+         margin: 0 auto;
+         max-width: 36em;
+         padding-left: 50px;
+         padding-right: 50px;
+         padding-top: 50px;
+         padding-bottom: 50px;
+         hyphens: auto;
+         overflow-wrap: break-word;
+         text-rendering: optimizeLegibility;
+         font-kerning: normal;
+     }
+     @media (max-width: 600px) {
+         body {
+             font-size: 0.9em;
+             padding: 12px;
+         }
+         h1 {
+             font-size: 1.8em;
+         }
+     }
+     @media print {
+         html {
+             background-color: white;
+         }
+         body {
+             background-color: transparent;
+             color: black;
+             font-size: 12pt;
+         }
+         p, h2, h3 {
+             orphans: 3;
+             widows: 3;
+         }
+         h2, h3, h4 {
+             page-break-after: avoid;
+         }
+     }
+     p {
+         margin: 1em 0;
+     }
+     a {
+         color: #1a1a1a;
+     }
+     a:visited {
+         color: #1a1a1a;
+     }
+     img {
+         max-width: 100%;
+     }
+     svg {
+         height: auto;
+         max-width: 100%;
+     }
+     h1, h2, h3, h4, h5, h6 {
+         margin-top: 1.4em;
+     }
+     h5, h6 {
+         font-size: 1em;
+         font-style: italic;
+     }
+     h6 {
+         font-weight: normal;
+     }
+     ol, ul {
+         padding-left: 1.7em;
+         margin-top: 1em;
+     }
+     li > ol, li > ul {
+         margin-top: 0;
+     }
+     blockquote {
+         margin: 1em 0 1em 1.7em;
+         padding-left: 1em;
+         border-left: 2px solid #e6e6e6;
+         color: #606060;
+     }
+     code {
+         font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+         font-size: 85%;
+         margin: 0;
+         hyphens: manual;
+     }
+     pre {
+         margin: 1em 0;
+         overflow: auto;
+     }
+     pre code {
+         padding: 0;
+         overflow: visible;
+         overflow-wrap: normal;
+     }
+     .sourceCode {
+         background-color: transparent;
+         overflow: visible;
+     }
+     hr {
+         background-color: #1a1a1a;
+         border: none;
+         height: 1px;
+         margin: 1em 0;
+     }
+     table {
+         margin: 1em 0;
+         border-collapse: collapse;
+         width: 100%;
+         overflow-x: auto;
+         display: block;
+         font-variant-numeric: lining-nums tabular-nums;
+     }
+     table caption {
+         margin-bottom: 0.75em;
+     }
+     tbody {
+         margin-top: 0.5em;
+         border-top: 1px solid #1a1a1a;
+         border-bottom: 1px solid #1a1a1a;
+     }
+     th {
+         border-top: 1px solid #1a1a1a;
+         padding: 0.25em 0.5em 0.25em 0.5em;
+     }
+     td {
+         padding: 0.125em 0.5em 0.25em 0.5em;
+     }
+     header {
+         margin-bottom: 4em;
+         text-align: center;
+     }
+     #TOC li {
+         list-style: none;
+     }
+     #TOC ul {
+         padding-left: 1.3em;
+     }
+     #TOC > ul {
+         padding-left: 0;
+     }
+     #TOC a:not(:hover) {
+         text-decoration: none;
+     }
+     code{white-space: pre-wrap;}
+     span.smallcaps{font-variant: small-caps;}
+     div.columns{display: flex; gap: min(4vw, 1.5em);}
+     div.column{flex: auto; overflow-x: auto;}
+     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+     /* The extra [class] is a hack that increases specificity enough to
+        override a similar rule in reveal.js */
+     ul.task-list[class]{list-style: none;}
+     ul.task-list li input[type="checkbox"] {
+         font-size: inherit;
+         width: 0.8em;
+         margin: 0 0.8em 0.2em -1.6em;
+         vertical-align: middle;
+     }
+
+       </style>
+  <link rel="stylesheet" href="my.css" />
+  <script defer="" src="katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+     var mathElements = document.getElementsByClassName("math");
+     var macros = {
+         "\\eqref": "\\href{###1}{(\\text{#1})}",
+         "\\ref": "\\href{###1}{\\text{#1}}",
+         "\\label": "\\htmlId{#1}{}"
+     };
+     for (var i = 0; i < mathElements.length; i++) {
+         var texText = mathElements[i].firstChild;
+         if (mathElements[i].tagName == "SPAN") {
+             katex.render(texText.data, mathElements[i], {
+                 displayMode: mathElements[i].classList.contains('display'),
+                 throwOnError: false,
+                 trust: (context) => ['\\htmlId', '\\href'].includes(context.command),
+                 macros: macros,
+                 fleqn: false
+             });
+ }}});
+</script>
+
+<link rel="stylesheet" href="katex.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">WTH?? Illuminance and Luminance</h1>
+<p class="author">Heiegg</p>
+<p class="date">2024-04-05</p>
+</header>
+<h1 id="sec:rant">Rant</h1>
+<p>People have used up all the English words that mean “light” in
+photometry, light, lumen, lux, luminance, illuminance. Wikipedia on this
+subject and many other online sourses are fuzzy with definitions, fuzzy
+in the sense that I cannot understand enough to be able to use them.
+Thus I make an attempt to understand in this snippet.</p>
+<p>Let <span class="math inline">\Omega</span> denote the whole space.
+It is clear at this point that I am no physicist. Otherwise I would use
+<span class="math inline">\Omega</span> for the solid angle. I cannot
+appreciate the assignment of a fixed symbol to a physical object. There
+are so many objects and yet so few easily accessible symbols. Thus one
+should assign the symbols adaptively: assign nice short symbols to
+objects on which one is going to talk most often. Anyway I try to
+respect the convention if possible, for example, <span
+class="math inline">\rho</span> is some density.</p>
+<h1 id="sec:power-flux">Power flux</h1>
+<p>Let <span class="math inline">\Omega</span> denote the whole space. A
+light source is a surface in <span class="math inline">\Omega</span>
+that consumes energy and emits light. All surfaces are required to be
+orientable in this snippet. Let <span class="math inline">S_{L}</span>
+denote the surface. Let <span class="math inline">\mu_{L}</span> denote
+the measure on <span class="math inline">S_{L}</span>. All the measures
+in this snippet are derived from the standard euclidean metric on <span
+class="math inline">\Omega</span>. Let <span
+class="math inline">\rho_{L}(X)</span> denote the density of the emitted
+light power at <span class="math inline">X\in S_{L}</span>. Note that
+power means energy per unit time. Then the total emitted light power of
+<span class="math inline">S_{L}</span> is given by <span
+class="math display">\begin{aligned}
+\label{eq:total-emitted-light-power}\tag{eq:total-emitted-light-power}
+  \int_{S_{L}} \rho_{L}(X) d\mu_{L}(X).
+\end{aligned}</span></p>
+<p>The light source <span class="math inline">S_{L}</span> produces a
+vector field <span class="math inline">\mathbf{F}</span> on <span
+class="math inline">\Omega</span> which is the light power flux density.
+For a surface <span class="math inline">U\subseteq \Omega</span> with
+measure <span class="math inline">\mu_{U}</span>, the flux of light
+power through <span class="math inline">U</span> is given by <span
+class="math display">\begin{aligned}
+\label{eq:flux-light-power}\tag{eq:flux-light-power}
+  \int_{U} \mathbf{F}(Y) \cdot \mathbf{n}_{U}(Y) d\mu_{U}(Y),
+\end{aligned}</span> where <span
+class="math inline">\mathbf{n}_{U}</span> denotes the normal vector
+field on <span class="math inline">U</span>.</p>
+<p>Assume that the contribution to <span
+class="math inline">\mathbf{F}(\cdot)</span> from each point <span
+class="math inline">X</span> of <span class="math inline">S_{L}</span>
+is given by the vector field <span
+class="math inline">\mathbf{f}(X,\cdot)</span> such that <span
+class="math display">\begin{aligned}
+  \int_{S_{L}} \mathbf{f}(X,Y) d\mu_{L}(X) = \mathbf{F}(Y).
+\end{aligned}</span> In general, the contributions may not be additive
+and the light source can self-obstruct or interfere with itself.</p>
+<p>We need to make some further assumptions to link <span
+class="math inline">\rho_{L}(X)</span> to <span
+class="math inline">\mathbf{f}(X,\cdot)</span>. By the principle of
+conservation of energy, we have <span
+class="math display">\begin{aligned}
+  \int_{S_{L}} \rho_{L}(X) d\mu_{L}(X) = \int_{U} \int_{S_{L}}
+\mathbf{f}(X,Y) \cdot \mathbf{n}_{U}(Y) d\mu_{L}(X)  d\mu_{U}(Y),
+\end{aligned}</span> where now <span class="math inline">U</span> is a
+surface enclosing the light source. We thus assume <span
+class="math display">\begin{aligned}
+\label{eq:power-density-identity}\tag{eq:power-density-identity}
+   \rho_{L}(X)  = \int_{U}  \mathbf{f}(X,Y) \cdot
+\mathbf{n}_{U}(Y)  d\mu_{U}(Y),
+\end{aligned}</span> By the square inverse law, we expect that <span
+class="math inline">\mathbf{f}(X,Y) = \frac{\alpha(X)}{d^{3}(X,Y)}
+\mathbf{v}(X,Y)</span> where <span class="math inline">\alpha(X)</span>
+is a constant of proportionality to be determined, <span
+class="math inline">d(X,Y)</span> is the distance function and <span
+class="math inline">\mathbf{v}(X,Y)</span> denotes the vector <span
+class="math inline">\overrightarrow{XY}</span>. Assume now that <span
+class="math inline">U</span> is a sphere centred at <span
+class="math inline">X</span> with radius <span
+class="math inline">R</span>. Then the RHS of <a
+href="#eq:power-density-identity" data-reference-type="eqref"
+data-reference="eq:power-density-identity">[eq:power-density-identity]</a>
+simplifies to <span class="math display">\begin{aligned}
+  \int_{U} \frac{\alpha(X)}{ R^{2}} d\mu_{U}(Y) = 4\pi \alpha(X).
+\end{aligned}</span> Thus we take <span
+class="math display">\alpha(X)  = \frac{\rho_{L}(X)}{4\pi}.</span> If we
+assumed that <span class="math inline">\mathbf{f}</span> depends on the
+distance only with direction given by <span
+class="math inline">\mathbf{v}(X,Y)</span>, the above computation would
+show that the only way for <span class="math inline">\alpha</span> to be
+independent of <span class="math inline">Y</span> is for <span
+class="math inline">\mathbf{f}</span> to take the form <span
+class="math inline">\mathbf{f}(X,Y) = \frac{\alpha(X)}{d^{3}(X,Y)}
+\mathbf{v}(X,Y)</span>.</p>
+<h1 id="sec:an-attempt-match">An attempt to match terminology</h1>
+<p>Next we try to match with the terminology in Handprint<a href="#fn1"
+class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>.</p>
+<p>The is the total emitted light power, so it is given by <a
+href="#eq:total-emitted-light-power" data-reference-type="eqref"
+data-reference="eq:total-emitted-light-power">[eq:total-emitted-light-power]</a>.</p>
+<p>The is the luminous flux per solid angle, so it is given by <span
+class="math display">\begin{aligned}
+  \frac{1}{4\pi} \int_{S_{L}}\rho_{L}(X) d\mu_{L}(X) .
+\end{aligned}</span></p>
+<p>Now <span class="math inline">U</span> is again an arbitrary surface
+in <span class="math inline">\Omega</span>. The is the light power
+received by <span class="math inline">U</span> per unit area, so, at the
+point <span class="math inline">Y\in U</span>, it is given by <span
+class="math display">\begin{aligned}
+  \mathbf{F}(Y) \cdot \mathbf{n}_{U}(Y) &amp;=   \int_{S_{L}}
+\mathbf{f}(X,Y) \cdot \mathbf{n}_{U}(Y) d\mu_{L}(X)\\
+  &amp;=  \int_{S_{L}} \frac{\rho_{L}(X)}{4\pi d^{3}(X,Y)}
+\mathbf{v}(X,Y) \cdot \mathbf{n}_{U}(Y) d\mu_{L}(X) .
+\end{aligned}</span> Assume the light source is small relative to the
+illuminated surface <span class="math inline">U</span>. Assume <span
+class="math inline">\rho_{L}(X)</span> is independent of <span
+class="math inline">X\in S_{L}</span> and we write <span
+class="math inline">\rho_{L}</span> for this constant value. Then the
+illuminance at the point <span class="math inline">Y\in U</span> can be
+approximated by <span class="math display">\begin{aligned}
+  \mu_{L}(S_{L}) \frac{\rho_{L}}{4\pi R^{2}} \cos(\theta),
+\end{aligned}</span> where <span class="math inline">R</span> is the
+approximate distance from the light source to <span
+class="math inline">Y</span> and <span class="math inline">\theta</span>
+is the angle between <span class="math inline">\mathbf{n}_{U}(Y)</span>
+and the approximate unit vector pointing from the light source to <span
+class="math inline">Y</span>.</p>
+<p>The is the contribution from a point <span class="math inline">X\in
+S_{L}</span> to the illuminance at <span class="math inline">Y\in
+U</span> adjusted to account for the distance and the surface normal of
+<span class="math inline">S_{L}</span> at <span
+class="math inline">X</span>, i.e., the illuminance divided by the
+‘visual size of the light source’. It is given by <span
+class="math display">\begin{aligned}
+  \lim_{S\rightarrow \{ X \}} \frac{ \int_{S} \mathbf{f}(X&#39;,Y) \cdot
+\mathbf{n}_{U}(Y) d\mu_{L}(X&#39;) }{ \frac{\mu_{L}(S)}{ d^{3}(X,Y)}
+\mathbf{v}(X,Y) \cdot \mathbf{n}_{L}(X) }
+  = \frac{d^{3}(X,Y) \mathbf{f}(X,Y) \cdot \mathbf{n}_{U}(Y)
+}{  \mathbf{v}(X,Y) \cdot \mathbf{n}_{L}(X) }.
+\end{aligned}</span> where <span class="math inline">S</span> runs over
+open subsets of <span class="math inline">S_{L}</span> that contain
+<span class="math inline">X</span>. It simplifies to <span
+class="math display">\begin{aligned}
+  \frac{\frac{\rho_{L}(X)}{4\pi d^{3}(X,Y)} \mathbf{v}(X,Y) \cdot
+\mathbf{n}_{U}(Y)}{ \frac{\mathbf{v}(X,Y) \cdot \mathbf{n}_{L}(X)}{
+d^{3}(X,Y)} } = \frac{\rho_{L}(X)}{ 4\pi} \frac{  \mathbf{v}(X,Y) \cdot
+\mathbf{n}_{U}(Y) }{ \mathbf{v}(X,Y) \cdot \mathbf{n}_{L}(X) }.
+\end{aligned}</span></p>
+<p>I guess the relation between Irradiance and Radiance is the same as
+Illuminance and Luminance.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>https://www.handprint.com/HP/WCL/color3.html<a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
