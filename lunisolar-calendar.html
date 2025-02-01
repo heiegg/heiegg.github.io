@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Heiegg" />
+  <meta name="dcterms.date" content="2025-02-01" />
+  <title>Notes on the Lunisolar Calendar</title>
+  <style>
+     html {
+         color: #1a1a1a;
+         background-color: #fdfdfd;
+     }
+     body {
+         margin: 0 auto;
+         max-width: 36em;
+         padding-left: 50px;
+         padding-right: 50px;
+         padding-top: 50px;
+         padding-bottom: 50px;
+         hyphens: auto;
+         overflow-wrap: break-word;
+         text-rendering: optimizeLegibility;
+         font-kerning: normal;
+     }
+     @media (max-width: 600px) {
+         body {
+             font-size: 0.9em;
+             padding: 12px;
+         }
+         h1 {
+             font-size: 1.8em;
+         }
+     }
+     @media print {
+         html {
+             background-color: white;
+         }
+         body {
+             background-color: transparent;
+             color: black;
+             font-size: 12pt;
+         }
+         p, h2, h3 {
+             orphans: 3;
+             widows: 3;
+         }
+         h2, h3, h4 {
+             page-break-after: avoid;
+         }
+     }
+     p {
+         margin: 1em 0;
+     }
+     a {
+         color: #1a1a1a;
+     }
+     a:visited {
+         color: #1a1a1a;
+     }
+     img {
+         max-width: 100%;
+     }
+     svg {
+         height: auto;
+         max-width: 100%;
+     }
+     h1, h2, h3, h4, h5, h6 {
+         margin-top: 1.4em;
+     }
+     h5, h6 {
+         font-size: 1em;
+         font-style: italic;
+     }
+     h6 {
+         font-weight: normal;
+     }
+     ol, ul {
+         padding-left: 1.7em;
+         margin-top: 1em;
+     }
+     li > ol, li > ul {
+         margin-top: 0;
+     }
+     blockquote {
+         margin: 1em 0 1em 1.7em;
+         padding-left: 1em;
+         border-left: 2px solid #e6e6e6;
+         color: #606060;
+     }
+     code {
+         font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+         font-size: 85%;
+         margin: 0;
+         hyphens: manual;
+     }
+     pre {
+         margin: 1em 0;
+         overflow: auto;
+     }
+     pre code {
+         padding: 0;
+         overflow: visible;
+         overflow-wrap: normal;
+     }
+     .sourceCode {
+         background-color: transparent;
+         overflow: visible;
+     }
+     hr {
+         background-color: #1a1a1a;
+         border: none;
+         height: 1px;
+         margin: 1em 0;
+     }
+     table {
+         margin: 1em 0;
+         border-collapse: collapse;
+         width: 100%;
+         overflow-x: auto;
+         display: block;
+         font-variant-numeric: lining-nums tabular-nums;
+     }
+     table caption {
+         margin-bottom: 0.75em;
+     }
+     tbody {
+         margin-top: 0.5em;
+         border-top: 1px solid #1a1a1a;
+         border-bottom: 1px solid #1a1a1a;
+     }
+     th {
+         border-top: 1px solid #1a1a1a;
+         padding: 0.25em 0.5em 0.25em 0.5em;
+     }
+     td {
+         padding: 0.125em 0.5em 0.25em 0.5em;
+     }
+     header {
+         margin-bottom: 4em;
+         text-align: center;
+     }
+     #TOC li {
+         list-style: none;
+     }
+     #TOC ul {
+         padding-left: 1.3em;
+     }
+     #TOC > ul {
+         padding-left: 0;
+     }
+     #TOC a:not(:hover) {
+         text-decoration: none;
+     }
+     code{white-space: pre-wrap;}
+     span.smallcaps{font-variant: small-caps;}
+     div.columns{display: flex; gap: min(4vw, 1.5em);}
+     div.column{flex: auto; overflow-x: auto;}
+     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+     /* The extra [class] is a hack that increases specificity enough to
+        override a similar rule in reveal.js */
+     ul.task-list[class]{list-style: none;}
+     ul.task-list li input[type="checkbox"] {
+         font-size: inherit;
+         width: 0.8em;
+         margin: 0 0.8em 0.2em -1.6em;
+         vertical-align: middle;
+     }
+
+       </style>
+  <link rel="stylesheet" href="my.css" />
+  <script defer="" src="katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+     var mathElements = document.getElementsByClassName("math");
+     var macros = {
+         "\\eqref": "\\href{###1}{(\\text{#1})}",
+         "\\ref": "\\href{###1}{\\text{#1}}",
+         "\\label": "\\htmlId{#1}{}"
+     };
+     for (var i = 0; i < mathElements.length; i++) {
+         var texText = mathElements[i].firstChild;
+         if (mathElements[i].tagName == "SPAN") {
+             katex.render(texText.data, mathElements[i], {
+                 displayMode: mathElements[i].classList.contains('display'),
+                 throwOnError: false,
+                 trust: (context) => ['\\htmlId', '\\href'].includes(context.command),
+                 macros: macros,
+                 fleqn: false
+             });
+ }}});
+</script>
+
+<link rel="stylesheet" href="katex.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Notes on the Lunisolar Calendar</h1>
+<p class="author">Heiegg</p>
+<p class="date">2025-02-01</p>
+</header>
+<p>The article describes one way of setting up a lunisolar calendar. It
+largely follows the current practice in China.</p>
+<p>It is important to define the terms, such as day, month, etc. to
+avoid confusion. I don’t think I can define the term <u>time</u>. Time
+is very difficult to talk about, when you need to reckon with the theory
+of relativity. Alright, so I fail at the very beginning.</p>
+<h1 id="sec:terms">Terminologies</h1>
+<p>Most of the terminologies below are taken from Wikipedia.</p>
+<p>A <u>second</u> is a length of time defined in terms of the caesium
+frequency<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>.</p>
+<p>A <u>day</u> is defined to be 86400 seconds<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. A
+<u>solar day</u> is the time it takes for the sun to return to its upper
+culmination point (its highest point in the sky). We point that that a
+longitude on earth must be chosen before hand, so indeed a lunisolar
+calendar constructed using the exact same rules described below can be
+very different when we use a different longitude. Here we refrain from
+going into the issue of timezones, which can be sidestepped by choosing
+a longitude that match with the timezone. The average of the length of
+the solar days, taken over a long enough period of time, is called the
+<u>mean solar day length</u>. In recent decades, the mean solar day
+length is approximately 86400.002 seconds. We will ignore the
+discrepancy with a day (86400 seconds) and will ignore the issue of leap
+seconds. From a certain epoch, which I don’t know exactly when, we cut
+up the time into blocks of 86400 seconds. Each block is called a
+<u>calendar day</u>. Each calendar day starts approximately when the sun
+is at its lower culmination point in the sky.</p>
+<p>A <u>year</u> is defined to be 365.25 days long. We probably will not
+use this concept much. For this article, a <u>tropical year</u> is
+defined to be the time it takes for the sun to go from one winter
+solstice to the next winter solstice<a href="#fn3" class="footnote-ref"
+id="fnref3" role="doc-noteref"><sup>3</sup></a>. Some remarks are in
+order. Here winter solstice is defined in the ecliptic coordinates<a
+href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a> centred around the earth and it is
+the winter solstice with respect to the northern hemisphere, which means
+that it is the solstice that happens in December. It is the summer
+solstice in the southern hemisphere. For ease of exposition, we ditch
+the southern hemisphere. We do not use the tropical year from vernal
+equinox to the next vernal equinox. The reason for the choice is that I
+think the current practice uses winter solstices, as was that of the Qin
+state, to set up the lunisolar calendar. To describe the lunisolar
+calendar used in the Zhou dynasty, for example, one should use vernal
+equinoxes instead<a href="#fn5" class="footnote-ref" id="fnref5"
+role="doc-noteref"><sup>5</sup></a>. Due to the earth’s axial
+precession, the line that is the intersection of the ecliptic plane and
+the equatorial plane keeps changing direction in the sidereal frame,
+resulting in changes in the equinox points and the solstice points. Thus
+the length of a tropical year is different from that of a sidereal year,
+which we will not define. One can think of sidereal objects to be
+essentially objects defined with respect to an absolute reference frame.
+The mean length of a tropical year is 365.259636 days at the epoch
+J2011.0. (I do not know how exactly one takes the mean at the epoch
+J2011.0.)</p>
+<p>We divide the ecliptic longitude into 24 equal parts. The points that
+start at the winter solstice and are 15 degrees apart are the <u>solar
+terms</u><a href="#fn6" class="footnote-ref" id="fnref6"
+role="doc-noteref"><sup>6</sup></a>. Those with index congruent to that
+of the winter solstice modulo <span class="math inline">2</span> are
+called <u>major terms</u> and the rest are called <u>minor terms</u>. I
+personally think of these as lying on a standing wave with the minor
+terms being the nodes and the major terms being where the amplitude is
+the largest.</p>
+<p>We introduce the concept of the <u>calendar sui</u>. We define it to
+be the time from the calendar day (included) that contains the winter
+solstice to the next one (excluded). I am unsure if we should use true
+solar day or not. A calendar sui is approximately one tropical year
+long. We see that a calendar sui contains either 365 or 366 calendar
+days. When there are 366 calendar days, one of days is designated to be
+special.</p>
+<p>So far only the sun and the earth play a role. Next we divide up the
+calendar sui based on information from the moon.</p>
+<p>A <u>synodic month</u><a href="#fn7" class="footnote-ref" id="fnref7"
+role="doc-noteref"><sup>7</sup></a> is the time from the new moon to the
+next. The <u>new moon</u> is the phase of the moon when the moon and the
+sun have the same ecliptic longitude. At the J2000.0 epoch, the average
+length of a synodic month is 29.53059 days. A <u>calendar yue</u> is the
+time from the beginning of the calendar day that contains a new moon to
+the beginning of the calendar day that contains the next new moon. Again
+I am unsure if we should use true solar day or not. A calendar yue
+consists of 29 or 30 calendar days. We introduce the concept of a
+calendar yue-aligned sui. A <u>calendar yue-aligned sui</u> starts from
+the beginning of the calendar yue that contains a winter solstice and
+ends at the beginning of the calendar yue that contains the next winter
+solstice. We do some basic approximation <span
+class="math display">\begin{aligned}
+\label{eq:month}
+  \frac{\text{length}(\text{mean tropical
+year})}{\text{length}{(\text{mean synodic month})}} =
+\frac{365.259636}{29.53059} \approx 12.3689.
+\end{aligned}</span> It can be shown that a calendar yue-aligned sui
+contains 12 or 13 calendar yue. When there are 13 calendar yue, one of
+them is designated to be special and determining which is special makes
+use of the major terms.</p>
+<h1 id="sec:where-new-year">Where is new year?</h1>
+<p>Let us adopt the current convention of 定正, which determines when
+the new year starts, in China. The calendar yue that contains a winter
+solstice is labelled as yue 11. If a calendar yue-aligned sui has 12
+calendar yue, then we label them from 11 onward and when the number
+becomes bigger than 12, we do modulo 12, so, starting from the calendar
+yue containing the winter solstice, the labels are <span
+class="math display">\begin{aligned}
+  11,  12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
+\end{aligned}</span> Now assume that a calendar yue-aligned sui has 13
+calendar yue. By Schubfachschluss, in a calendar yue-aligned sui, there
+is at least one calendar yue which does not contain a major term. The
+ellipse orbit of the earth around the sun probably does not permit there
+being more than one. The first such calendar yue is designated as the
+intercalary yue and it will use the same the number as the calendar yue
+before it. The other 12 calendar yue will be labelled from 11 onward and
+when the number becomes bigger than 12, we do modulo 12. For example, we
+can have, as the yue numbers <span class="math display">\begin{aligned}
+&amp;  11,  11 \text{(intercalary)}, 12, 1, 2, 3, 4, 5, 6,  7, 8, 9, 10;
+\text{ or}\\
+&amp;  11,  12, 1, 2, 3, 4, 5, 6, 6 \text{(intercalary)}, 7, 8, 9, 10.
+\end{aligned}</span> Some sequences are less likely to occur due to the
+earth’s ellipse orbit. We note that yue 11 always contains a major term
+since, by definition, it contains a winter solstice. The first calendar
+day of yue 1 is then the the lunisolar new year’s day. Just to be more
+precise, if we have both yue 1 and yue 1 (intercalary), the latter does
+not produce a second new year’s day.</p>
+<p>In ancient China, other conventions of 定正 were used and there are
+other ways for labelling which calendar yue is the intercalary yue. We
+will not go into it.</p>
+<h1 id="sec:197">19年7閏</h1>
+<p>Consider <span class="math inline">0.3689</span> which is the
+non-integral part of <a href="#eq:month" data-reference-type="eqref"
+data-reference="eq:month">[eq:month]</a>. With bounded denominator, we
+can ask for the best approximation using fractions. Since <span
+class="math inline">0.3689</span> is already an approximate number, we
+should not let the denominator be too big; there is no point to
+approximate beyond the precision that <span
+class="math inline">0.3689</span> has. We should limit the denominator
+to at most 100. Besides considering human longevity and the longevity of
+past dynasties, it is best not to strain over 100.</p>
+<p>One way for finding the best fraction approximation is via continued
+fractions<a href="#fn8" class="footnote-ref" id="fnref8"
+role="doc-noteref"><sup>8</sup></a><a href="#fn9" class="footnote-ref"
+id="fnref9" role="doc-noteref"><sup>9</sup></a>. [TODO: I need to find a
+better source for this.] It is easy to get the continued fraction for
+<span class="math inline">0.3689</span>: <span
+class="math display">\begin{aligned}
+  [0; 2, 1, 2, 2, 5, 2, 1, 3, 7, 1, 1759218603, 1, 1, 3, 2]
+\end{aligned}</span> and for each truncation, we get a fraction and we
+list them below: <span class="math display">\begin{aligned}
+  1/2,
+1/3,
+3/8,
+7/19,
+38/103,
+83/225...
+\end{aligned}</span> with error given by <span
+class="math display">\begin{aligned}
+  0.13110,
+-0.035567,
+0.0061000,
+-0.00047895,
+0.000032039,
+-0.000011111,
+0.0000024390...
+\end{aligned}</span> We see that having <span
+class="math inline">7</span> intercalary calendar yue in every cycle of
+<span class="math inline">19</span> calendar yue-aligned sui is a good
+enough approximation. Going up to <span
+class="math inline">38/103</span> stretches the precision too much.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://en.wikipedia.org/wiki/Second"
+class="uri">https://en.wikipedia.org/wiki/Second</a><a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://en.wikipedia.org/wiki/Day"
+class="uri">https://en.wikipedia.org/wiki/Day</a><a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://en.wikipedia.org/wiki/Tropical_year"
+class="uri">https://en.wikipedia.org/wiki/Tropical_year</a><a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a
+href="https://en.wikipedia.org/wiki/Ecliptic_coordinate_system"
+class="uri">https://en.wikipedia.org/wiki/Ecliptic_coordinate_system</a><a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><span id="fn:1" data-label="fn:1"></span><a
+href="https://en.wikipedia.org/wiki/Chinese_calendar#History"
+class="uri">https://en.wikipedia.org/wiki/Chinese_calendar#History</a><a
+href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://en.wikipedia.org/wiki/Solar_term"
+class="uri">https://en.wikipedia.org/wiki/Solar_term</a><a
+href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p><a href="https://en.wikipedia.org/wiki/Lunar_month"
+class="uri">https://en.wikipedia.org/wiki/Lunar_month</a><a
+href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p><a href="https://shreevatsa.net/fraction/best"
+class="uri">https://shreevatsa.net/fraction/best</a><a href="#fnref8"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p><a
+href="https://shreevatsa.wordpress.com/2011/01/10/not-all-best-rational-approximations-are-the-convergents-of-the-continued-fraction/"
+class="uri">https://shreevatsa.wordpress.com/2011/01/10/not-all-best-rational-approximations-are-the-convergents-of-the-continued-fraction/</a><a
+href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
