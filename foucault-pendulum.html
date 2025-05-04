@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Heiegg" />
+  <meta name="dcterms.date" content="2025-05-04" />
+  <title>Some computation on Foucault’s Pendulum</title>
+  <style>
+     html {
+         color: #1a1a1a;
+         background-color: #fdfdfd;
+     }
+     body {
+         margin: 0 auto;
+         max-width: 36em;
+         padding-left: 50px;
+         padding-right: 50px;
+         padding-top: 50px;
+         padding-bottom: 50px;
+         hyphens: auto;
+         overflow-wrap: break-word;
+         text-rendering: optimizeLegibility;
+         font-kerning: normal;
+     }
+     @media (max-width: 600px) {
+         body {
+             font-size: 0.9em;
+             padding: 12px;
+         }
+         h1 {
+             font-size: 1.8em;
+         }
+     }
+     @media print {
+         html {
+             background-color: white;
+         }
+         body {
+             background-color: transparent;
+             color: black;
+             font-size: 12pt;
+         }
+         p, h2, h3 {
+             orphans: 3;
+             widows: 3;
+         }
+         h2, h3, h4 {
+             page-break-after: avoid;
+         }
+     }
+     p {
+         margin: 1em 0;
+     }
+     a {
+         color: #1a1a1a;
+     }
+     a:visited {
+         color: #1a1a1a;
+     }
+     img {
+         max-width: 100%;
+     }
+     svg {
+         height: auto;
+         max-width: 100%;
+     }
+     h1, h2, h3, h4, h5, h6 {
+         margin-top: 1.4em;
+     }
+     h5, h6 {
+         font-size: 1em;
+         font-style: italic;
+     }
+     h6 {
+         font-weight: normal;
+     }
+     ol, ul {
+         padding-left: 1.7em;
+         margin-top: 1em;
+     }
+     li > ol, li > ul {
+         margin-top: 0;
+     }
+     blockquote {
+         margin: 1em 0 1em 1.7em;
+         padding-left: 1em;
+         border-left: 2px solid #e6e6e6;
+         color: #606060;
+     }
+     code {
+         font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+         font-size: 85%;
+         margin: 0;
+         hyphens: manual;
+     }
+     pre {
+         margin: 1em 0;
+         overflow: auto;
+     }
+     pre code {
+         padding: 0;
+         overflow: visible;
+         overflow-wrap: normal;
+     }
+     .sourceCode {
+         background-color: transparent;
+         overflow: visible;
+     }
+     hr {
+         background-color: #1a1a1a;
+         border: none;
+         height: 1px;
+         margin: 1em 0;
+     }
+     table {
+         margin: 1em 0;
+         border-collapse: collapse;
+         width: 100%;
+         overflow-x: auto;
+         display: block;
+         font-variant-numeric: lining-nums tabular-nums;
+     }
+     table caption {
+         margin-bottom: 0.75em;
+     }
+     tbody {
+         margin-top: 0.5em;
+         border-top: 1px solid #1a1a1a;
+         border-bottom: 1px solid #1a1a1a;
+     }
+     th {
+         border-top: 1px solid #1a1a1a;
+         padding: 0.25em 0.5em 0.25em 0.5em;
+     }
+     td {
+         padding: 0.125em 0.5em 0.25em 0.5em;
+     }
+     header {
+         margin-bottom: 4em;
+         text-align: center;
+     }
+     #TOC li {
+         list-style: none;
+     }
+     #TOC ul {
+         padding-left: 1.3em;
+     }
+     #TOC > ul {
+         padding-left: 0;
+     }
+     #TOC a:not(:hover) {
+         text-decoration: none;
+     }
+     code{white-space: pre-wrap;}
+     span.smallcaps{font-variant: small-caps;}
+     div.columns{display: flex; gap: min(4vw, 1.5em);}
+     div.column{flex: auto; overflow-x: auto;}
+     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+     /* The extra [class] is a hack that increases specificity enough to
+        override a similar rule in reveal.js */
+     ul.task-list[class]{list-style: none;}
+     ul.task-list li input[type="checkbox"] {
+         font-size: inherit;
+         width: 0.8em;
+         margin: 0 0.8em 0.2em -1.6em;
+         vertical-align: middle;
+     }
+
+       </style>
+  <link rel="stylesheet" href="my.css" />
+  <script defer="" src="katex.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+     var mathElements = document.getElementsByClassName("math");
+     var macros = {
+         "\\eqref": "\\href{###1}{(\\text{#1})}",
+         "\\ref": "\\href{###1}{\\text{#1}}",
+         "\\label": "\\htmlId{#1}{}"
+     };
+     for (var i = 0; i < mathElements.length; i++) {
+         var texText = mathElements[i].firstChild;
+         if (mathElements[i].tagName == "SPAN") {
+             katex.render(texText.data, mathElements[i], {
+                 displayMode: mathElements[i].classList.contains('display'),
+                 throwOnError: false,
+                 trust: (context) => ['\\htmlId', '\\href'].includes(context.command),
+                 macros: macros,
+                 fleqn: false
+             });
+ }}});
+</script>
+
+<link rel="stylesheet" href="katex.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Some computation on Foucault’s Pendulum</h1>
+<p class="author">Heiegg</p>
+<p class="date">2025-05-04</p>
+</header>
+<p>I read this page<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> for reference. Without it, I would
+never figure out how to approximate. My notes focus on the parts that I
+find difficult to grasp. What I find easy are omitted.</p>
+<p>Let <span class="math inline">V</span> be a <span
+class="math inline">3</span> dimensional vector space over <span
+class="math inline">\mathbb{R}</span> equipped with the standard inner
+product. Let <span class="math inline">\mathbf{O}</span> denote the
+origin. Let <span
+class="math inline">\mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}</span>
+be the standard basis.</p>
+<p>The symbol <span class="math inline">t</span> will denote the time,
+which I have no idea how to define. We assume that the functions in
+<span class="math inline">t</span> below are smooth.</p>
+<h1 id="sec:angular-velocity">Angular velocity</h1>
+<p>Consider rotation about the origin in the space <span
+class="math inline">V</span>. The motion can be described by <span
+class="math inline">g(t) : V \rightarrow V</span> for some <span
+class="math inline">g(t)\in\mathop{\mathrm{\mathrm{SO}}}(V)</span> and a
+particle which is at the point <span
+class="math inline">\mathbf{P}(0)\in V</span> at time <span
+class="math inline">0</span> is at <span
+class="math inline">\mathbf{P}(t) := g(t)\mathbf{P}(0)</span> at time
+<span class="math inline">t</span>. The velocity of the particle is
+<span class="math inline">\mathbf{P}&#39;(t) =
+g&#39;(t)\mathbf{P}(0)</span>. The linear map <span
+class="math inline">g&#39;(t)g(t)^{-1} : V\rightarrow V</span> is
+skew-symmetric, i.e., <span class="math inline">g&#39;g^{-1} +
+(g&#39;g^{-1})^{*} = 0</span>, which is easy to see from the Lie algebra
+point of view. Thus it has an eigenvalue <span
+class="math inline">0</span>. The other two eigenvalues are <span
+class="math inline">ib(t)</span> and <span
+class="math inline">-ib(t)</span> for some <span
+class="math inline">b(t)\in\mathbb{R}</span>. The eigenspace for <span
+class="math inline">0</span> is of dimension <span
+class="math inline">1</span> or <span class="math inline">3</span>. When
+the dimension is <span class="math inline">1</span>, on the complement,
+each point has angular velocity perpendicular to the position vector
+with amplitude <span class="math inline">|b(t)|</span>. In other words,
+the motion is rotation about the axis given by the eigenspace for <span
+class="math inline">0</span> with angular speed <span
+class="math inline">|b(t)|</span>. We choose a smooth section <span
+class="math inline">\mathbf{a}: \mathbb{R}\rightarrow V</span> such that
+<span class="math inline">\mathbf{a}(t)</span> is a unit vector in the
+<span class="math inline">0</span>-eigenspace of <span
+class="math inline">g&#39;(t)g(t)^{-1}</span>. Each <span
+class="math inline">\mathbf{a}(t)</span> gives the axis of rotation and
+an orientation of the complementary plane and <span
+class="math inline">g&#39;(t)g(t)^{-1}</span> determines the signed
+amplitude <span class="math inline">b(t)</span> where CCW is considered
+as the positive direction. More explicitly, choose a right-handed
+orthonormal basis <span
+class="math inline">\mathbf{v}_{1}(t),\mathbf{v}_{2}(t),\mathbf{a}(t)</span>
+of <span class="math inline">V</span> and if <span
+class="math inline">g&#39;(t)g(t)^{-1}</span> is represented by the
+matrix <span class="math display">\begin{aligned}
+  \begin{pmatrix}
+    0     &amp; -b(t) &amp; 0 \\
+    b(t)  &amp; 0 &amp; 0 \\
+    0     &amp; 0 &amp; 0
+  \end{pmatrix},
+\end{aligned}</span> then <span class="math inline">b(t)</span> is the
+signed amplitude. Let <span class="math inline">\bm{\Omega}(t) = b(t)
+\mathbf{a}(t)</span>, which is the angular velocity of the particles at
+time <span class="math inline">t</span>. We note that <span
+class="math inline">\bm{\Omega}(t) \times \mathbf{v}(t) = g&#39;(t)
+g^{-1}(t) \mathbf{v}</span> for all <span
+class="math inline">\mathbf{v}\in V</span>, so we get the following.</p>
+<div class="lemma">
+<p><strong>Lemma 1</strong>. <em>The following holds: <span
+class="math inline">\mathbf{P}&#39;(t) = \bm{\Omega}(t) \times
+\mathbf{P}(t)</span>.</em></p>
+</div>
+<h1 id="sec:coord-with-resp">Coordinates with respect to frames</h1>
+<p>Set <span class="math inline">\mathcal{I}= \{
+\mathbf{e}_{1},\mathbf{e}_{2}, \mathbf{e}_{3}  \}</span>. Let <span
+class="math inline">\mathbf{r}(t)\in V</span>. Write <span
+class="math inline">r_{\mathbf{e}}(t)</span> for the <span
+class="math inline">\mathbf{e}</span>-coordinate of <span
+class="math inline">\mathbf{r}(t)</span>, for <span
+class="math inline">\mathbf{e}\in \mathcal{I}</span>. Then <span
+class="math display">\mathbf{r}(t) = \sum_{\mathbf{e}\in \mathcal{I}}
+r_{\mathbf{e}}(t) \mathbf{e}.</span></p>
+<p>Let <span class="math inline">\mathcal{R}= \{ \mathbf{f}_{1},
+\mathbf{f}_{2},\mathbf{f}_{3}  \}</span> be a rotating frame in <span
+class="math inline">V</span> based at <span
+class="math inline">\mathbf{P}</span>, where, for <span
+class="math inline">\mathbf{f}\in\mathcal{R}</span>, <span
+class="math inline">\mathbf{f}: \mathbb{R}\rightarrow V</span> and <span
+class="math inline">\mathbf{P}: \mathbb{R}\rightarrow V</span> are
+functions depending on the time. Write <span
+class="math inline">r_{\mathbf{f}}(t)</span> for the <span
+class="math inline">\mathbf{f}(t)</span>-coordinate of <span
+class="math inline">\mathbf{r}(t)</span>, for <span
+class="math inline">\mathbf{f}\in \mathcal{R}</span>. Then <span
+class="math display">\mathbf{r}(t) = \mathbf{P}(t) + \sum_{\mathbf{f}\in
+\mathcal{R}} r_{\mathbf{f}}(t) \mathbf{f}(t).</span></p>
+<p>We have the equality <span class="math display">\begin{aligned}
+  \sum_{\mathbf{e}\in \mathcal{I}} r_{\mathbf{e}}(t)
+\mathbf{e}=  \mathbf{P}(t) + \sum_{\mathbf{f}\in \mathcal{R}}
+r_{\mathbf{f}}(t) \mathbf{f}(t).
+\end{aligned}</span> Taking derivatives up to second order, we get <span
+class="math display">\begin{aligned}
+  \sum_{\mathbf{e}\in \mathcal{I}} r_{\mathbf{e}}&#39;(t)
+\mathbf{e}&amp;=  \mathbf{P}&#39;(t) + \sum_{\mathbf{f}\in \mathcal{R}}
+(r_{\mathbf{f}}&#39;(t) \mathbf{f}(t) + r_{\mathbf{f}}(t)
+\mathbf{f}&#39;(t))\\
+  \sum_{\mathbf{e}\in \mathcal{I}} r_{\mathbf{e}}&#39;&#39;(t)
+\mathbf{e}&amp;=  \mathbf{P}&#39;&#39;(t) + \sum_{\mathbf{f}\in
+\mathcal{R}} (r_{\mathbf{f}}&#39;&#39;(t) \mathbf{f}(t) + 2
+r_{\mathbf{f}}&#39;(t) \mathbf{f}&#39;(t) + r_{\mathbf{f}}(t)
+\mathbf{f}&#39;&#39;(t)).
+\end{aligned}</span></p>
+<p>We consider the case where the rotation is given by <span
+class="math inline">g:\mathbb{R}\rightarrow
+\mathop{\mathrm{\mathrm{SO}}}(V)</span> or equivalently by <span
+class="math inline">\bm{\Omega}: \mathbb{R}\rightarrow V</span>. Thus we
+have <span class="math inline">\mathbf{P}&#39;(t) = \bm{\Omega}(t)
+\times \mathbf{P}(t)</span> and <span
+class="math inline">\mathbf{f}&#39;(t) = \bm{\Omega}(t) \times
+\mathbf{f}(t)</span>. Substituting, we find <span
+class="math display">\begin{aligned}
+  \sum_{\mathbf{e}\in \mathcal{I}} r_{\mathbf{e}}&#39;(t)
+\mathbf{e}&amp;=  \bm{\Omega}(t) \times \mathbf{P}(t) +
+\sum_{\mathbf{f}\in \mathcal{R}} (r_{\mathbf{f}}&#39;(t) \mathbf{f}(t) +
+r_{\mathbf{f}}(t) \bm{\Omega}(t) \times \mathbf{f}(t))\\
+  \sum_{\mathbf{e}\in \mathcal{I}} r_{\mathbf{e}}&#39;&#39;(t)
+\mathbf{e}&amp;=  \bm{\Omega}&#39;(t) \times \mathbf{P}(t) +
+\bm{\Omega}(t) \times (\bm{\Omega}(t) \times \mathbf{P}(t))\\
+                                       &amp; + \sum_{\mathbf{f}\in
+\mathcal{R}} (r_{\mathbf{f}}&#39;&#39;(t) \mathbf{f}(t) + 2
+r_{\mathbf{f}}&#39;(t) \bm{\Omega}(t) \times \mathbf{f}(t) +
+r_{\mathbf{f}}(t) (\bm{\Omega}&#39;(t) \times \mathbf{f}(t) +
+\bm{\Omega}(t) \times (\bm{\Omega}(t) \times \mathbf{f}(t)) )).
+\end{aligned}</span></p>
+<p>Assume the motion of a particle is given by <span
+class="math inline">\mathbf{r}(t)</span>. According to Newton’s second
+law of motion, <span class="math display">\begin{aligned}
+  \sum_{\mathbf{e}\in \mathcal{I}} r_{\mathbf{e}}&#39;&#39;(t)
+\mathbf{e}= \frac{1}{m(t)} \mathbf{F}(t),
+\end{aligned}</span> where <span class="math inline">m(t)</span> is the
+mass of the particle and <span class="math inline">\mathbf{F}(t)</span>
+is the total force acting on the particle at time <span
+class="math inline">t</span>. We get differential equations in <span
+class="math inline">r_{\mathbf{f}}</span>’s.</p>
+<p>Next we make some simplifying assumptions and approximations. Assume
+<span class="math inline">\bm{\Omega}</span> is constant. Assume <span
+class="math inline">|\mathbf{P}(t)| \gg |r_{\mathbf{f}}(t)|</span> for
+all <span class="math inline">\mathbf{f}\in\mathcal{R}</span>. Assume
+<span class="math inline">m(t) = m</span> is constant. We get an
+approximate differential equation for the motion in the rotating frame
+<span class="math display">\begin{aligned}
+    \frac{1}{m} \mathbf{F}(t) =   \bm{\Omega}(t) \times (\bm{\Omega}(t)
+\times \mathbf{P}(t))  + \sum_{\mathbf{f}\in \mathcal{R}}
+(r_{\mathbf{f}}&#39;&#39;(t) \mathbf{f}(t) + 2 r_{\mathbf{f}}&#39;(t)
+\bm{\Omega}(t) \times \mathbf{f}(t) ).
+\end{aligned}</span> Rearranging, we get <span
+class="math display">\begin{aligned}
+\label{eq:motion}\tag{eq:motion}
+\sum_{\mathbf{f}\in \mathcal{R}} r_{\mathbf{f}}&#39;&#39;(t)
+\mathbf{f}(t) = \frac{1}{m} \mathbf{F}(t) - \bm{\Omega}(t) \times
+(\bm{\Omega}(t) \times \mathbf{P}(t)) - \sum_{\mathbf{f}\in \mathcal{R}}
+2 r_{\mathbf{f}}&#39;(t) \bm{\Omega}(t) \times \mathbf{f}(t) ,
+\end{aligned}</span> where <span class="math inline">-m \bm{\Omega}(t)
+\times (\bm{\Omega}(t) \times \mathbf{P}(t))</span> is called the
+centrifugal force and <span class="math inline">-m \sum_{\mathbf{f}\in
+\mathcal{R}} 2 r_{\mathbf{f}}&#39;(t) \bm{\Omega}(t) \times
+\mathbf{f}(t)</span> is called the Coriolis force.</p>
+<h1 id="sec:determ-vert-direct">Determination of the vertical
+direction</h1>
+<p>We now turn to model the motion of a pendulum on the surface of the
+Earth. We assume that the rotation of the Earth is given by the constant
+angular velocity <span class="math inline">\bm{\Omega}</span>. This
+defines the north pole and the south pole, by requiring that <span
+class="math inline">\bm{\Omega}</span> points from the south pole to the
+north pole. We assume that the Earth is a sphere. Assume the hanging
+point of the pendulum is at <span class="math inline">\mathbf{P}</span>
+(depending on the time <span class="math inline">t</span>). Since the
+pendulum is small relative to the size of the Earth, we will ignore the
+variation of the gravitational field near <span
+class="math inline">\mathbf{P}(t)</span>. Let <span
+class="math inline">\mathbf{O}</span> be the point on the axis of
+rotation of the Earth that is closest to <span
+class="math inline">\mathbf{P}</span>. Let <span
+class="math inline">\mathbf{e}_{3}</span> be the unit vector pointing in
+the direction of <span class="math inline">\bm{\Omega}</span>. Choose
+unit vectors <span
+class="math inline">\mathbf{e}_{1},\mathbf{e}_{2}</span> so that <span
+class="math inline">\mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}</span>
+form a righthanded system and <span
+class="math inline">\mathbf{e}_{1}</span> has the same direction as
+<span class="math inline">\mathbf{P}(0)</span>. In reality, the vectors
+<span
+class="math inline">\mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}</span>
+also depend on the time, but we will ignore the variation. Set <span
+class="math inline">\Omega := ||\bm{\Omega}||</span>. It is easy to see
+that <span class="math display">\mathbf{P}(t) = \cos(\Omega
+t)\mathbf{e}_{1} + \sin(\Omega t)\mathbf{e}_{2}.</span></p>
+<p>Let <span class="math inline">\mathbf{f}_{3}(t)</span> be the unit
+upward vertical direction based at <span
+class="math inline">\mathbf{P}(t)</span>, that is, the opposite
+direction of the string that hangs a motionless (relative to <span
+class="math inline">\mathbf{P}</span>) object. We will exclude the case
+that <span class="math inline">\mathbf{P}</span> is at the poles of the
+Earth. Set <span class="math inline">\mathbf{f}_{2}(t) =
+\frac{\bm{\Omega}\times \mathbf{f}_{3}(t)}{||\bm{\Omega}\times
+\mathbf{f}_{3}(t)||}</span> and <span
+class="math inline">\mathbf{f}_{1}(t) = \mathbf{f}_{2}(t) \times
+\mathbf{f}_{3}(t)</span>.</p>
+<p>Now we determine <span class="math inline">\mathbf{f}_{3}</span>.
+Assume the angle between <span class="math inline">\mathbf{P}(t)</span>
+and <span class="math inline">\bm{\Omega}</span> is <span
+class="math inline">\varphi</span>. Apply <a href="#eq:motion"
+data-reference-type="eqref" data-reference="eq:motion">[eq:motion]</a>
+to the case where <span
+class="math inline">r_{\mathbf{f}}&#39;=r_{\mathbf{f}}&#39;&#39;=0</span>.
+We get <span class="math display">\begin{aligned}
+  0 =  \mathbf{F}(t) - m \bm{\Omega}(t) \times (\bm{\Omega}(t) \times
+\mathbf{P}(t)) .
+\end{aligned}</span> By our setup, <span
+class="math inline">\bm{\Omega}\perp \mathbf{P}</span>, so that <span
+class="math inline">\bm{\Omega}\times (\bm{\Omega}\times \mathbf{P}(t))
+= - \Omega^{2} \mathbf{P}(t)</span>. The hanging object has
+gravitational force <span class="math inline">\mathbf{G}(t)</span> and
+tension from the string acting on it. The gravity points from <span
+class="math inline">\mathbf{P}(t)</span> to the centre of the Earth, so
+it is in the direction of <span class="math display">\begin{aligned}
+- ( \sin(\varphi)\cos(\Omega t) \mathbf{e}_{1}
++   \sin(\varphi)\sin(\Omega t) \mathbf{e}_{2} + \cos(\varphi)
+\mathbf{e}_{3})
+\end{aligned}</span> Write <span class="math inline">mk</span> for the
+magnitude of the gravity for some constant <span
+class="math inline">k\in\mathbb{R}</span>. (Here we use the
+approximation that locally the gravity is considered uniform.) The
+direction of <span class="math inline">\mathbf{f}_{3}(t)</span> is in
+the direction of the tension, which is <span
+class="math inline">m</span> times <span
+class="math display">\begin{aligned}
+\label{eq:multiple-of-f3}\tag{eq:multiple-of-f3}
+   (k\sin(\varphi) + \Omega^{2}) (\cos(\Omega t) \mathbf{e}_{1} +
+\sin(\Omega t) \mathbf{e}_{2}) + k\cos(\varphi) \mathbf{e}_{3}.
+\end{aligned}</span></p>
+<p>Write <span class="math inline">g</span> for the magnitude of <a
+href="#eq:multiple-of-f3" data-reference-type="eqref"
+data-reference="eq:multiple-of-f3">[eq:multiple-of-f3]</a>, which is the
+constant <span class="math display">\begin{aligned}
+  ((k\sin(\varphi) + \Omega^{2})^{2} +
+(k\cos(\varphi))^{2})^{\frac{1}{2}} = (k^{2} + 2k\Omega^{2}\sin(\varphi)
++ \Omega^{4})^{\frac{1}{2}} .
+\end{aligned}</span> Some explicit computation gives <span
+class="math display">\begin{aligned}
+  \mathrm{coord}_{_{\mathcal{I}}}( \mathbf{f}_3 ) &amp;= g^{-1} (
+(k\sin(\varphi) + \Omega^{2})\cos(\Omega t), (k\sin(\varphi) +
+\Omega^{2})\sin(\Omega t), k\cos(\varphi)  )_{\mathcal{I}}\\
+  \mathrm{coord}_{_{\mathcal{I}}}( \mathbf{f}_2 ) &amp;= (-\sin(\Omega
+t), \cos(\Omega t), 0)_{\mathcal{I}}\\
+  \mathrm{coord}_{_{\mathcal{I}}}( \mathbf{f}_1 ) &amp;= g^{-1} (
+k\cos(\varphi)\cos(\Omega t), k\cos(\varphi)\sin(\Omega t), -
+(k\sin(\varphi) + \Omega^{2})  )_{\mathcal{I}}
+\end{aligned}</span> and <span
+class="math display">\label{eq:Omega-cross-f}\tag{eq:Omega-cross-f}
+  \begin{aligned}
+    \Omega\times \mathbf{f}_{3} &amp;= \frac{\Omega
+}{g}  (k\sin(\varphi) + \Omega^{2}) \mathbf{f}_{2}\\
+    \Omega\times \mathbf{f}_{2} &amp;= -\Omega (\cos(\Omega t) ,
+\sin(\Omega t), 0)_{\mathcal{I}} = - \frac{\Omega }{g} [ k\cos(\varphi)
+\mathbf{f}_{1} + (k\sin(\varphi) + \Omega^{2}) \mathbf{f}_{3}]\\
+    \Omega\times \mathbf{f}_{1} &amp;= \frac{\Omega }{g}
+k\cos(\varphi)  \mathbf{f}_{2}
+  \end{aligned}</span></p>
+<h1 id="sec:pendule-foucault">Le pendule de Foucault</h1>
+<p>We set the pendulum in motion. Let <span
+class="math display">\begin{aligned}
+  \mathbf{G}^{\star}(t) = \mathbf{G}(t) - m \bm{\Omega}(t) \times
+(\bm{\Omega}(t) \times \mathbf{P}(t)) =  - m g \mathbf{f}_{3}(t) .
+\end{aligned}</span> Write <span
+class="math inline">\mathbf{T}(t)</span> for the tension. We get <span
+class="math display">\begin{aligned}
+  \sum_{\mathbf{f}\in \mathcal{R}} r_{\mathbf{f}}&#39;&#39;(t)
+\mathbf{f}(t) &amp;= \frac{1}{m} \mathbf{T}(t) + \frac{1}{m}
+\mathbf{G}^{\star}(t) - \sum_{\mathbf{f}\in \mathcal{R}} 2
+r_{\mathbf{f}}&#39;(t) \bm{\Omega}(t) \times \mathbf{f}(t)\\
+                                             &amp;= \frac{1}{m}
+\mathbf{T}(t) - g \mathbf{f}_{3}(t) - \sum_{\mathbf{f}\in \mathcal{R}} 2
+r_{\mathbf{f}}&#39;(t) \bm{\Omega}(t) \times \mathbf{f}(t).
+\end{aligned}</span> Since <span class="math inline">\mathbf{T}</span>
+is parallel to <span class="math inline">\sum_{\mathbf{f}\in
+\mathcal{R}} r_{\mathbf{f}}(t) \mathbf{f}(t)</span>, we find that <span
+class="math display">\begin{aligned}
+  \sum_{\mathbf{f}\in \mathcal{R}} r_{\mathbf{f}}&#39;&#39;(t)
+\mathbf{f}(t) +  g \mathbf{f}_{3}(t) + \sum_{\mathbf{f}\in \mathcal{R}}
+2 r_{\mathbf{f}}&#39;(t) \bm{\Omega}(t) \times \mathbf{f}(t)
+\end{aligned}</span> is parallel to <span
+class="math inline">\sum_{\mathbf{f}\in \mathcal{R}} r_{\mathbf{f}}(t)
+\mathbf{f}(t)</span>. The length of <span
+class="math inline">\sum_{\mathbf{f}\in \mathcal{R}} r_{\mathbf{f}}(t)
+\mathbf{f}(t)</span> is the length of the string <span
+class="math inline">L</span>. These give rise to 3 differential
+equations in <span class="math inline">r_{\mathbf{f}_{1}},
+r_{\mathbf{f}_{2}}, r_{\mathbf{f}_{3}}</span>. The solutions describe
+the motion of the pendulum in the rotating frame. Using <a
+href="#eq:Omega-cross-f" data-reference-type="eqref"
+data-reference="eq:Omega-cross-f">[eq:Omega-cross-f]</a> and separating
+the coordinates, we get differential equations <span
+class="math display">\begin{aligned}
+  r_{\mathbf{f}_{1}}&#39;&#39; &amp;= \frac{1}{m} T_{\mathbf{f}_{1}} + 2
+\Omega g^{-1} r_{\mathbf{f}_{2}}&#39; k \cos(\varphi)\\
+  r_{\mathbf{f}_{2}}&#39;&#39; &amp;= \frac{1}{m} T_{\mathbf{f}_{2}} - 2
+\Omega g^{-1} ( r_{\mathbf{f}_{1}}&#39; k \cos(\varphi) +
+r_{\mathbf{f}_{3}}&#39; (k\sin(\varphi) + \Omega^{2}))\\
+  r_{\mathbf{f}_{3}}&#39;&#39; &amp;= \frac{1}{m} T_{\mathbf{f}_{3}} - g
++ 2 \Omega g^{-1} r_{\mathbf{f}_{2}}&#39; (k\sin(\varphi) + \Omega^{2}).
+\end{aligned}</span> We do not attempt to solve the differential
+equations.</p>
+<p>Next we introduce some further approximations. We approximate <span
+class="math inline">\Omega^{2}</span>, <span
+class="math inline">r_{\mathbf{f}_{3}}&#39;</span> and <span
+class="math inline">r_{\mathbf{f}_{3}}&#39;&#39;</span> by <span
+class="math inline">0</span>. We approximate <span
+class="math inline">r_{\mathbf{f}_{3}}</span> by <span
+class="math inline">L</span>. Then <span class="math inline">g\approx
+k</span>. Then we have approximate differential equations <span
+class="math display">\begin{aligned}
+  r_{\mathbf{f}_{1}}&#39;&#39; &amp;= \frac{1}{m} T_{\mathbf{f}_{1}} + 2
+\Omega  r_{\mathbf{f}_{2}}&#39;  \cos(\varphi)\\
+  r_{\mathbf{f}_{2}}&#39;&#39; &amp;= \frac{1}{m} T_{\mathbf{f}_{2}} - 2
+\Omega   r_{\mathbf{f}_{1}}&#39; \cos(\varphi)  \\
+  0 &amp;= \frac{1}{m} T_{\mathbf{f}_{3}} - g + 2
+\Omega  r_{\mathbf{f}_{2}}&#39; \sin(\varphi).
+\end{aligned}</span> We can find the components of the tension easily
+<span class="math display">\begin{aligned}
+  T_{\mathbf{f}_{3}} &amp;= m (g - 2  \Omega  r_{\mathbf{f}_{2}}&#39;
+\sin(\varphi) ).\\
+  T_{\mathbf{f}_{2}} &amp;=
+\frac{r_{\mathbf{f}_{2}}}{r_{\mathbf{f}_{3}}} T_{\mathbf{f}_{3}}\\
+  T_{\mathbf{f}_{1}} &amp;=
+\frac{r_{\mathbf{f}_{1}}}{r_{\mathbf{f}_{3}}} T_{\mathbf{f}_{3}}.
+\end{aligned}</span> The term <span
+class="math inline">2  \Omega  r_{\mathbf{f}_{2}}&#39;
+\sin(\varphi)</span> is negligible compared to <span
+class="math inline">g</span>. After all the approximations, which I have
+no idea how well they approximate, we arrive at the nice differential
+equations <span class="math display">\begin{aligned}
+  r_{\mathbf{f}_{1}}&#39;&#39; &amp;= \frac{g}{L} r_{\mathbf{f}_{1}} + 2
+\Omega  r_{\mathbf{f}_{2}}&#39;  \cos(\varphi)\\
+  r_{\mathbf{f}_{2}}&#39;&#39; &amp;=  \frac{g}{L} r_{\mathbf{f}_{2}}- 2
+\Omega   r_{\mathbf{f}_{1}}&#39; \cos(\varphi)  
+\end{aligned}</span> where “nice” means that finally we know how to
+solve the differential equations analytically.</p>
+<p>Set <span class="math inline">a=\frac{g}{L}</span> and <span
+class="math inline">b = 2 \Omega \cos(\varphi)</span>. We focus on
+solving the differential equations <span
+class="math display">\begin{aligned}
+  x&#39;&#39; &amp;= a x + b y&#39;\\
+  y&#39;&#39; &amp;=  a y- b x&#39;.
+\end{aligned}</span> There is a standard way for solving this. One gets
+exponentials as solutions. When <span class="math inline">4a &gt;
+b^{2}</span> (which is the case here), the periods of the solutions are
+easily seen to be <span class="math display">\begin{aligned}
+  \frac{2\pi}{\frac{|b|}{2}} = \frac{2\pi}{ \Omega |\cos(\varphi)|}.
+\end{aligned}</span></p>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a
+href="https://www.phys.unsw.edu.au/~jw/pendulumdetails.html"
+class="uri">https://www.phys.unsw.edu.au/~jw/pendulumdetails.html</a><a
+href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>

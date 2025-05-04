@@ -1,5 +1,6 @@
 # Heiegg's Notes
 
+- [Some computation on Foucault’s Pendulum](foucault-pendulum.html)
 - [Notes on the lunisolar calendars](lunisolar-calendar.html)
 - [Illuminance and Luminance](luminance.html)
 - [The Perspective Projection Matrix](perspective-projection-matrix.html)
